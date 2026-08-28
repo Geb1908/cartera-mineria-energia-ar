@@ -2,7 +2,7 @@
 
 Dashboard interactivo con **59 proyectos** de minería y Gas \& Oil en Argentina: qué es cada uno, quién lo opera, cuánto invierte, cuándo arranca y qué produce.
 
-[**→ Ver el dashboard**](https://USUARIO.github.io/REPOSITORIO/)
+[**→ Ver el dashboard**](https://geb1908.github.io/cartera-mineria-energia-ar/)
 
 !\[Vista del dashboard](docs/preview.png)
 
