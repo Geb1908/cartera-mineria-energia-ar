@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cartera minera y energética argentina · agosto 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#E7E9E2; --paper2:#F3F4EF; --card:#FBFBF8;
+  --ink:#161D22; --ink2:#5A646C; --ink3:#8B949A;
+  --rule:#C8CCC2; --rule2:#DDE0D8;
+  --cobre:#A85A32; --litio:#3E8CA0; --oro:#9A7B22;
+  --hc:#1F5673; --mid:#2E7D6E; --otros:#6E7377; --alerta:#8C2F2F;
+  --shadow:0 1px 0 rgba(22,29,34,.06), 0 2px 10px rgba(22,29,34,.05);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:"Public Sans",system-ui,sans-serif; font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Archivo",system-ui,sans-serif; margin:0; letter-spacing:-.02em}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
+.wrap{max-width:1440px; margin:0 auto; padding:0 24px}
+a{color:var(--hc)}
+
+/* ---------- eyebrow / rules ---------- */
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--ink3); display:flex; align-items:center; gap:10px;
+}
+.eyebrow::after{content:""; flex:1; height:1px; background:var(--rule)}
+section{padding:56px 0; border-top:1px solid var(--rule)}
+section:first-of-type{border-top:none}
+.sec-title{font-size:30px; font-weight:800; margin:14px 0 6px; line-height:1.1}
+.sec-sub{color:var(--ink2); max-width:70ch; margin:0 0 28px}
+
+/* ---------- header ---------- */
+header{padding:40px 0 0; background:linear-gradient(180deg,#DFE2DA 0%, var(--paper) 100%)}
+.masthead{display:flex; flex-wrap:wrap; gap:20px; align-items:flex-end; justify-content:space-between}
+h1{font-size:clamp(30px,4.6vw,56px); font-weight:800; line-height:.98; max-width:16ch}
+h1 em{font-style:normal; color:var(--cobre)}
+.stamp{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; line-height:1.7; color:var(--ink2);
+  border:1px solid var(--rule); padding:10px 14px; background:rgba(255,255,255,.5);
+}
+.stamp b{color:var(--ink); font-weight:600}
+
+/* ---------- hero timeline ---------- */
+.hero{margin-top:34px; padding-bottom:44px}
+.hero-lead{max-width:64ch; color:var(--ink2); margin:10px 0 18px}
+#heroChart{height:290px; width:100%; background:var(--card); border:1px solid var(--rule2)}
+
+/* ---------- KPIs ---------- */
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:1px; background:var(--rule); border:1px solid var(--rule)}
+.kpi{background:var(--card); padding:18px 18px 16px}
+.kpi .v{font-family:"Archivo",system-ui,sans-serif; font-weight:800; font-size:31px; line-height:1; letter-spacing:-.03em}
+.kpi .l{font-size:12.5px; color:var(--ink2); margin-top:7px; line-height:1.35}
+.kpi .d{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; color:var(--ink3); margin-top:6px}
+
+/* ---------- filters ---------- */
+.filterbar{position:sticky; top:0; z-index:900; background:rgba(231,233,226,.96); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule); padding:12px 0}
+.frow{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+.flabel{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink3); margin-right:2px}
+.chip{
+  border:1px solid var(--rule); background:var(--card); color:var(--ink2);
+  padding:5px 11px; font-size:12.5px; cursor:pointer; font-family:"Public Sans",sans-serif;
+  display:inline-flex; align-items:center; gap:6px; transition:.12s;
+}
+.chip:hover{border-color:var(--ink3)}
+.chip .dot{width:8px; height:8px; border-radius:50%; background:currentColor}
+.chip[aria-pressed="true"]{background:var(--ink); color:#fff; border-color:var(--ink)}
+.chip:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,th:focus-visible{outline:2px solid var(--hc); outline-offset:2px}
+input[type=search]{border:1px solid var(--rule); background:var(--card); padding:6px 10px; font-size:13px; font-family:inherit; min-width:180px}
+.count{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:12px; color:var(--ink2); margin-left:auto}
+
+/* ---------- map + list ---------- */
+.maprow{display:grid; grid-template-columns:1.55fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule)}
+#map{height:620px; background:var(--paper2)}
+.maplist{background:var(--card); height:620px; overflow-y:auto}
+.mapitem{padding:11px 14px; border-bottom:1px solid var(--rule2); cursor:pointer; display:flex; gap:10px; align-items:flex-start}
+.mapitem:hover{background:var(--paper2)}
+.mapitem .bar{width:3px; align-self:stretch; flex:none}
+.mapitem .n{font-weight:600; font-size:13.5px}
+.mapitem .m{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; color:var(--ink2)}
+.legend{display:flex; flex-wrap:wrap; gap:14px; margin:14px 0 0; font-size:12.5px; color:var(--ink2)}
+.legend span{display:inline-flex; align-items:center; gap:6px}
+.legend i{width:11px; height:11px; border-radius:50%; display:inline-block}
+
+/* ---------- charts ---------- */
+.grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(430px,1fr)); gap:20px}
+.panel{background:var(--card); border:1px solid var(--rule); padding:18px}
+.panel h3{font-size:16px; font-weight:600; margin-bottom:3px}
+.panel .note{font-size:12px; color:var(--ink3); margin:0 0 12px; font-family:"IBM Plex Mono",ui-monospace,monospace}
+.chart{width:100%; height:330px}
+.chart.tall{height:420px}
+
+/* ---------- maturity bar (signature) ---------- */
+.mat{display:flex; gap:2px; margin-top:7px}
+.mat i{height:5px; flex:1; background:var(--rule2); display:block}
+.mat i.on{background:var(--stage,var(--ink))}
+.matlabels{display:flex; justify-content:space-between; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:9.5px; color:var(--ink3); margin-top:4px; text-transform:uppercase; letter-spacing:.05em}
+
+/* ---------- table ---------- */
+.tablewrap{overflow-x:auto; border:1px solid var(--rule); background:var(--card)}
+table{border-collapse:collapse; width:100%; font-size:13px; min-width:1080px}
+th{
+  position:sticky; top:0; background:var(--paper2); text-align:left; padding:10px 12px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink2); border-bottom:1px solid var(--rule); cursor:pointer; white-space:nowrap; user-select:none;
+}
+th:hover{color:var(--ink)}
+th .ar{opacity:.35}
+th[aria-sort] .ar{opacity:1; color:var(--cobre)}
+td{padding:9px 12px; border-bottom:1px solid var(--rule2); vertical-align:top}
+tbody tr:hover{background:var(--paper2); cursor:pointer}
+.num{font-family:"IBM Plex Mono",ui-monospace,monospace; text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap}
+.tag{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10px; padding:2px 6px; border:1px solid currentColor; white-space:nowrap; letter-spacing:.03em}
+.sector-pill{display:inline-flex; align-items:center; gap:6px; white-space:nowrap; font-size:12.5px}
+.sector-pill i{width:9px; height:9px; border-radius:50%; flex:none}
+.conf{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10px; letter-spacing:.04em; padding:1px 5px; border-radius:2px}
+.conf.dato{background:#DDE7DE; color:#2E6141}
+.conf.emp{background:#E9E2CF; color:#7A6015}
+.conf.est{background:#E6DEDE; color:#8C4141}
+
+/* ---------- drawer ---------- */
+.scrim{position:fixed; inset:0; background:rgba(22,29,34,.42); opacity:0; pointer-events:none; transition:.2s; z-index:1000}
+.scrim.open{opacity:1; pointer-events:auto}
+.drawer{
+  position:fixed; top:0; right:0; height:100%; width:min(520px,100%); background:var(--card);
+  border-left:1px solid var(--rule); transform:translateX(100%); transition:transform .24s ease; z-index:1001;
+  overflow-y:auto; box-shadow:-8px 0 30px rgba(22,29,34,.12);
+}
+.drawer.open{transform:none}
+.dhead{padding:22px 24px 18px; border-bottom:1px solid var(--rule); position:sticky; top:0; background:var(--card); z-index:2}
+.dhead h3{font-size:23px; font-weight:800; line-height:1.12; padding-right:36px}
+.dclose{position:absolute; top:18px; right:18px; border:1px solid var(--rule); background:none; width:30px; height:30px; cursor:pointer; font-size:16px; line-height:1; color:var(--ink2)}
+.dbody{padding:20px 24px 60px}
+.dl{display:grid; grid-template-columns:132px 1fr; gap:9px 14px; font-size:13.5px; margin-bottom:22px}
+.dl dt{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink3); padding-top:3px}
+.dl dd{margin:0}
+.dnote{font-size:13px; color:var(--ink2); border-left:2px solid var(--rule); padding-left:12px; margin:0 0 20px}
+
+/* ---------- comparador ---------- */
+.cmpgrid{display:grid; grid-template-columns:150px repeat(3,1fr); gap:1px; background:var(--rule); border:1px solid var(--rule); font-size:13px}
+.cmpgrid>div{background:var(--card); padding:11px 13px}
+.cmpgrid .rl{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink3); background:var(--paper2)}
+.cmpgrid .hd{font-weight:600; font-family:"Archivo",system-ui,sans-serif}
+.cmpslots{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; align-items:center}
+select{border:1px solid var(--rule); background:var(--card); padding:6px 9px; font-family:inherit; font-size:13px; max-width:100%}
+
+/* ---------- simulador ---------- */
+.simgrid{display:grid; grid-template-columns:1.1fr 1fr; gap:22px}
+.slider{margin-bottom:20px}
+.slider label{display:flex; justify-content:space-between; align-items:baseline; font-size:13.5px; margin-bottom:6px}
+.slider .val{font-family:"IBM Plex Mono",ui-monospace,monospace; font-weight:600; font-size:15px}
+input[type=range]{width:100%; accent-color:var(--cobre)}
+.simout{border:1px solid var(--rule); background:var(--paper2); padding:20px}
+.simtot{font-family:"Archivo",system-ui,sans-serif; font-weight:800; font-size:44px; line-height:1; letter-spacing:-.03em; margin:6px 0 4px}
+.simrow{display:flex; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--rule2); font-size:13.5px}
+.simrow .n{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+/* ---------- misc blocks ---------- */
+.twocol{display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); gap:20px}
+.milestone{display:flex; gap:14px; padding:13px 0; border-bottom:1px solid var(--rule2)}
+.milestone .when{font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px; color:var(--cobre); min-width:92px; padding-top:2px; letter-spacing:.03em}
+.milestone .what{font-size:14px}
+.milestone .why{font-size:12.5px; color:var(--ink2)}
+.caveat{background:#EFEAE2; border-left:3px solid var(--oro); padding:16px 18px; font-size:13.5px}
+.caveat ul{margin:8px 0 0; padding-left:18px} .caveat li{margin-bottom:5px}
+footer{padding:40px 0 60px; border-top:1px solid var(--rule); font-size:12.5px; color:var(--ink2)}
+.btn{border:1px solid var(--ink); background:none; color:var(--ink); padding:7px 14px; font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; cursor:pointer}
+.btn:hover{background:var(--ink); color:#fff}
+.leaflet-popup-content{font-family:"Public Sans",sans-serif; font-size:13px; margin:12px 14px}
+.leaflet-popup-content b{font-family:"Archivo",system-ui,sans-serif}
+
+@media (max-width:900px){
+  .maprow{grid-template-columns:1fr} #map{height:400px} .maplist{height:340px}
+  .simgrid{grid-template-columns:1fr}
+  .cmpgrid{grid-template-columns:110px repeat(3,1fr); font-size:12px}
+  .dl{grid-template-columns:100px 1fr}
+  section{padding:40px 0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important} html{scroll-behavior:auto}}
+
+/* --- svg charts + tooltip propio --- */
+#map{height:620px;background:#DFE3DA;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#map svg{max-height:620px}
+.chart svg,#heroChart svg{display:block}
+#tip{position:fixed;top:0;left:0;z-index:1500;pointer-events:none;opacity:0;transition:opacity .1s;
+  background:#161D22;color:#F3F4EF;padding:8px 11px;font-size:12.5px;line-height:1.45;
+  font-family:"Public Sans",system-ui,sans-serif;max-width:280px;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+#tip.on{opacity:1}
+#tip b{font-family:"Archivo",system-ui,sans-serif}
+.leaflet-popup-content{}
+
+/* --- botón ampliar + modal --- */
+.ph{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.expand{border:1px solid var(--rule);background:var(--paper2);color:var(--ink2);width:26px;height:26px;
+  cursor:pointer;font-size:13px;line-height:1;flex:none;transition:.12s}
+.expand:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.modal{position:fixed;inset:0;z-index:1200;background:rgba(22,29,34,.55);backdrop-filter:blur(3px);
+  display:flex;align-items:center;justify-content:center;padding:28px;opacity:0;pointer-events:none;transition:.18s}
+.modal.open{opacity:1;pointer-events:auto}
+.modalbox{background:var(--card);border:1px solid var(--rule);width:min(1180px,100%);max-height:100%;
+  display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(22,29,34,.3)}
+.modalhead{padding:16px 20px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;gap:14px}
+.modalhead h3{font-size:19px;font-weight:800}
+.modalchart{flex:1;min-height:0;padding:14px 20px 8px}
+.modalchart>div{width:100%;height:min(66vh,620px)}
+.modalfoot{padding:0 20px 16px;font-size:12.5px;color:var(--ink2)}
+/* --- cadena de valor --- */
+.cadgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.cadcard{background:var(--card);padding:16px 18px}
+.cadcard h4{font-size:14.5px;font-weight:600;margin-bottom:2px}
+.cadcard .pj{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
+.cadrow{display:flex;gap:10px;padding:7px 0;border-top:1px solid var(--rule2);font-size:13px}
+.cadrow .rol{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10px;letter-spacing:.05em;
+  text-transform:uppercase;color:#fff;background:var(--ink2);padding:2px 6px;height:fit-content;flex:none;margin-top:2px}
+.cadrow .who b{font-family:"Archivo",system-ui,sans-serif}
+.cadrow .who span{color:var(--ink2);font-size:12.5px}
+.cadempty{background:var(--card);padding:18px;font-size:13px;color:var(--ink2)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="masthead">
+      <h1>La cartera <em>minera y energética</em> argentina, proyecto por proyecto</h1>
+      <div class="stamp">
+        DATOS AL <b>27·08·2026</b><br>
+        FUENTE BASE: <b>informe integral</b><br>
+        PROYECTOS RELEVADOS: <b id="stampN">—</b><br>
+        CAPEX AGREGADO: <b id="stampCapex">—</b>
+      </div>
+    </div>
+
+    <div class="hero">
+      <p class="hero-lead">Cada burbuja es un proyecto, ubicado en su año de puesta en marcha y dimensionado por su inversión. La forma del gráfico es la tesis: el capital ya está comprometido, pero la mayor parte no produce un dólar antes de 2029.</p>
+      <div id="heroChart"></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="kpis" id="kpis"></div>
+</div>
+
+<div class="filterbar">
+  <div class="wrap frow">
+    <span class="flabel">Sector</span>
+    <span id="fSector" class="frow"></span>
+    <span class="flabel" style="margin-left:12px">Estado</span>
+    <span id="fEstado" class="frow"></span>
+    <input type="search" id="fSearch" placeholder="Buscar proyecto u operador" aria-label="Buscar proyecto u operador">
+    <button class="chip" id="fReset">Limpiar</button>
+    <span class="count" id="fCount"></span>
+  </div>
+</div>
+
+<!-- ============ MAPA ============ -->
+<section id="mapa"><div class="wrap">
+  <p class="eyebrow">Geografía</p>
+  <h2 class="sec-title">Dónde está cada peso</h2>
+  <p class="sec-sub">El cobre se concentra en la cordillera de San Juan, Catamarca y Salta; el litio en la Puna; los hidrocarburos en la cuenca neuquina, con la salida exportadora en la costa rionegrina. Tocá un punto para abrir la ficha completa.</p>
+  <div class="maprow">
+    <div id="map"></div>
+    <div class="maplist" id="mapList"></div>
+  </div>
+  <div class="legend" id="legend"></div>
+  <p style="font-size:12px;color:var(--ink3);margin-top:10px" class="mono">Coordenadas aproximadas a nivel de yacimiento o traza. No usar para navegación ni catastro.</p>
+</div></section>
+
+<!-- ============ CAPITAL ============ -->
+<section id="capital"><div class="wrap">
+  <p class="eyebrow">Capital</p>
+  <h2 class="sec-title">Quién pone la plata y en qué</h2>
+  <p class="sec-sub">Los gráficos responden a los filtros de arriba, salvo el origen del capital y la cartera RIGI, que muestran siempre el total.</p>
+  <div class="grid2">
+    <div class="panel">
+      <div class="ph"><h3>Inversión por proyecto</h3><button class="expand" data-chart="chCapex" aria-label="Ampliar Inversión por proyecto" title="Ampliar">&#10530;</button></div>
+      <p class="note">USD millones · CAPEX declarado, punto medio del rango</p>
+      <div id="chCapex" class="chart tall"></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h3>Origen del capital controlante</h3><button class="expand" data-chart="chOrigen" aria-label="Ampliar Origen del capital controlante" title="Ampliar">&#10530;</button></div>
+      <p class="note">USD millones por país sede del operador principal</p>
+      <div id="chOrigen" class="chart tall"></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h3>Cartera RIGI</h3><button class="expand" data-chart="chRigi" aria-label="Ampliar Cartera RIGI" title="Ampliar">&#10530;</button></div>
+      <p class="note">USD millones · aprobados vs. en evaluación</p>
+      <div id="chRigi" class="chart"></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h3>Inversión contra empleo en operación</h3><button class="expand" data-chart="chScatter" aria-label="Ampliar Inversión contra empleo en operación" title="Ampliar">&#10530;</button></div>
+      <p class="note">Escala logarítmica · burbuja = empleo en construcción</p>
+      <div id="chScatter" class="chart"></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ PRODUCCIÓN ============ -->
+<section id="produccion"><div class="wrap">
+  <p class="eyebrow">Producción</p>
+  <h2 class="sec-title">Lo que hay hoy y lo que vendría</h2>
+  <div class="grid2">
+    <div class="panel">
+      <div class="ph"><h3>Petróleo por operador</h3><button class="expand" data-chart="chPetroleo" aria-label="Ampliar Petróleo por operador" title="Ampliar">&#10530;</button></div>
+      <p class="note">Miles de barriles diarios · junio 2026</p>
+      <div id="chPetroleo" class="chart"></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h3>Curva de cobre proyectada</h3><button class="expand" data-chart="chCobre" aria-label="Ampliar Curva de cobre proyectada" title="Ampliar">&#10530;</button></div>
+      <p class="note">Miles de toneladas anuales · aporte por proyecto</p>
+      <div id="chCobre" class="chart"></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h3>Litio: capacidad instalada y meta</h3><button class="expand" data-chart="chLitio" aria-label="Ampliar Litio: capacidad instalada y meta" title="Ampliar">&#10530;</button></div>
+      <p class="note">Toneladas anuales de carbonato equivalente</p>
+      <div id="chLitio" class="chart"></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h3>Exportaciones proyectadas: tres fuentes, tres números</h3><button class="expand" data-chart="chExpo" aria-label="Ampliar Exportaciones proyectadas: tres fuentes, tres números" title="Ampliar">&#10530;</button></div>
+      <p class="note">USD miles de millones · las series no coinciden a propósito</p>
+      <div id="chExpo" class="chart"></div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--ink2);margin-top:16px;max-width:80ch">La divergencia entre BCRA, CEPH y Rystad no es un error de datos: el escenario oficial asume que todos los proyectos entran en operación en fecha, mientras que las consultoras privadas descuentan demoras de FID y supuestos de precio más conservadores.</p>
+</div></section>
+
+<!-- ============ COMPARADOR ============ -->
+<section id="comparador"><div class="wrap">
+  <p class="eyebrow">Comparador</p>
+  <h2 class="sec-title">Tres proyectos, lado a lado</h2>
+  <p class="sec-sub">Elegí hasta tres para contrastar inversión, cronograma, empleo y madurez.</p>
+  <div class="cmpslots">
+    <select id="cmp0" aria-label="Proyecto 1"></select>
+    <select id="cmp1" aria-label="Proyecto 2"></select>
+    <select id="cmp2" aria-label="Proyecto 3"></select>
+  </div>
+  <div class="cmpgrid" id="cmpGrid"></div>
+</div></section>
+
+<!-- ============ SIMULADOR ============ -->
+<section id="simulador"><div class="wrap">
+  <p class="eyebrow">Sensibilidad</p>
+  <h2 class="sec-title">Qué pasa si se mueven los precios</h2>
+  <p class="sec-sub">Aproximación gruesa del valor bruto exportable en régimen pleno (hacia 2035). Multiplica volumen por precio: no descuenta costos, importaciones, retenciones ni consumo interno. Sirve para dimensionar órdenes de magnitud y ver qué variable manda, no para proyectar la balanza comercial.</p>
+  <div class="simgrid">
+    <div>
+      <div class="slider">
+        <label for="sCu">Cobre <span class="val mono" id="vCu"></span></label>
+        <input type="range" id="sCu" min="2.5" max="8" step="0.05" value="4.5">
+      </div>
+      <div class="slider">
+        <label for="sCuP">Producción de cobre <span class="val mono" id="vCuP"></span></label>
+        <input type="range" id="sCuP" min="0" max="1800" step="25" value="1500">
+      </div>
+      <div class="slider">
+        <label for="sLi">Carbonato de litio <span class="val mono" id="vLi"></span></label>
+        <input type="range" id="sLi" min="5000" max="40000" step="500" value="12000">
+      </div>
+      <div class="slider">
+        <label for="sLiP">Producción de litio <span class="val mono" id="vLiP"></span></label>
+        <input type="range" id="sLiP" min="0" max="400" step="10" value="300">
+      </div>
+      <div class="slider">
+        <label for="sBrent">Brent <span class="val mono" id="vBrent"></span></label>
+        <input type="range" id="sBrent" min="35" max="130" step="1" value="65">
+      </div>
+      <div class="slider">
+        <label for="sExp">Crudo exportado <span class="val mono" id="vExp"></span></label>
+        <input type="range" id="sExp" min="0" max="1.2" step="0.05" value="0.8">
+      </div>
+      <div class="slider">
+        <label for="sGnl">GNL a Asia <span class="val mono" id="vGnl"></span></label>
+        <input type="range" id="sGnl" min="4" max="24" step="0.5" value="10">
+      </div>
+      <div class="slider">
+        <label for="sGnlP">Capacidad de licuefacción <span class="val mono" id="vGnlP"></span></label>
+        <input type="range" id="sGnlP" min="0" max="30" step="1" value="18">
+      </div>
+      <button class="btn" id="simReset">Volver a los supuestos base</button>
+    </div>
+    <div class="simout">
+      <p class="eyebrow" style="margin-bottom:8px">Valor bruto exportable anual</p>
+      <div class="simtot mono" id="simTot">—</div>
+      <p style="font-size:12.5px;color:var(--ink2);margin:0 0 16px" id="simVs"></p>
+      <div id="simRows"></div>
+      <div id="chSim" style="height:190px;margin-top:16px"></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ============ CADENA DE VALOR ============ -->
+<section id="cadena"><div class="wrap">
+  <p class="eyebrow">Cadena de valor</p>
+  <h2 class="sec-title">Quién construye, quién provee, quién financia</h2>
+  <p class="sec-sub">Contratistas EPC, proveedores de equipamiento y financiadores con participación adjudicada y verificable. Solo aparecen los proyectos con adjudicaciones publicadas: sobre la mayoría de la cartera todavía no hay información pública de contratistas, y ese vacío está detallado abajo.</p>
+  <div class="cadgrid" id="cadGrid"></div>
+  <div class="panel" style="margin-top:20px">
+    <h3>Dónde falta información</h3>
+    <p class="note">Proyectos sin adjudicaciones publicadas</p>
+    <p id="cadFaltan" style="font-size:13px;color:var(--ink2);margin:8px 0 0"></p>
+    <p style="font-size:13px;color:var(--ink2);margin:14px 0 0;max-width:88ch">Tres razones explican el vacío. Los proyectos mineros que todavía no tomaron decisión final de inversión no licitan obra pesada: Taca Taca, El Pachón y MARA están en esa situación. Las operaciones ya maduras contratan servicios de forma recurrente sin comunicados. Y varias compañías canalizan la contratación por portales de proveedores privados, como el de Rincón de Rio Tinto o el portal de cadena de valor de Vicuña, sin publicar adjudicaciones individuales.</p>
+  </div>
+</div></section>
+
+<!-- ============ TABLA ============ -->
+<section id="tabla"><div class="wrap">
+  <p class="eyebrow">Registro</p>
+  <h2 class="sec-title">Tabla maestra</h2>
+  <p class="sec-sub">Ordená por cualquier columna. Los campos sin dato público confiable quedan como <span class="mono">s/d</span>: no están estimados.</p>
+  <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+    <button class="btn" id="csvBtn">Descargar CSV filtrado</button>
+    <span style="font-size:12.5px;color:var(--ink2);align-self:center">Cada fila abre la ficha completa.</span>
+  </div>
+  <div class="tablewrap"><table id="tbl">
+    <thead><tr id="thead"></tr></thead>
+    <tbody id="tbody"></tbody>
+  </table></div>
+</div></section>
+
+<!-- ============ REGULATORIO ============ -->
+<section id="regulatorio"><div class="wrap">
+  <p class="eyebrow">Marco</p>
+  <h2 class="sec-title">Reglas del juego</h2>
+  <div class="twocol">
+    <div class="panel">
+      <h3>Regalías y retenciones</h3>
+      <p class="note">Vigente a agosto 2026</p>
+      <div class="tablewrap" style="border:none"><table style="min-width:0">
+        <thead><tr><th>Concepto</th><th>Alícuota</th><th>Norma</th></tr></thead>
+        <tbody id="fiscalBody"></tbody>
+      </table></div>
+    </div>
+    <div class="panel">
+      <h3>Restricciones provinciales</h3>
+      <p class="note">Leyes que condicionan o bloquean proyectos</p>
+      <div id="leyesBody"></div>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:20px">
+    <h3>RIGI en una línea</h3>
+    <p style="font-size:13.5px;color:var(--ink2);margin:8px 0 0;max-width:90ch">Título VII de la Ley 27.742. Ganancias al 25% contra 35% general, amortización acelerada, IVA cancelable vía certificados CERTIVA, exención de retenciones desde el tercer año (segundo para proyectos PEELP), estabilidad fiscal por 30 años (40 para PEELP) y liberación escalonada de divisas al 20%, 40% y 100%. Umbral general de USD 200 millones; USD 300 millones para transporte de petróleo y gas; USD 600 millones para producción de hidrocarburos destinada a exportación. El plazo de adhesión se prorrogó hasta julio de 2027.</p>
+  </div>
+</div></section>
+
+<!-- ============ HITOS ============ -->
+<section id="hitos"><div class="wrap">
+  <p class="eyebrow">Agenda</p>
+  <h2 class="sec-title">Los hitos que validan o tumban todo lo anterior</h2>
+  <p class="sec-sub">Si estos cuatro se cumplen en fecha, las proyecciones oficiales ganan credibilidad. Si se corren, se corre todo el cronograma exportador con ellos.</p>
+  <div class="twocol">
+    <div><div id="milestones"></div></div>
+    <div class="caveat">
+      <b style="font-family:Archivo,sans-serif">Antes de usar estos números</b>
+      <ul>
+        <li>Buena parte de las cifras de producción y exportación futuras son proyecciones de las propias empresas, cámaras o del Gobierno. Son escenarios, no hechos.</li>
+        <li>La evaluación económica de Vicuña es preliminar, no un estudio de factibilidad. Taca Taca, El Pachón y MARA todavía no tienen decisión final de inversión.</li>
+        <li>Varios CAPEX se publican en rangos amplios: El Pachón entre USD 9.000 y 11.600 millones, Los Azules entre 2.460 y 4.000. Acá se grafica el punto medio y la ficha muestra el rango.</li>
+        <li>No hay dato público confiable sobre la alícuota específica de retención al gas natural, distinta del esquema del crudo.</li>
+        <li>El offshore quedó en pausa tras el pozo Argerich seco. Su reactivación depende de campañas todavía no confirmadas.</li>
+        <li>Las coordenadas son aproximadas y el simulador es una aproximación gruesa, no un modelo de balanza comercial.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <p><b>Cartera minera y energética argentina</b> · panorama al 27 de agosto de 2026, construido sobre el informe integral de proyectos de minería y Gas &amp; Oil.</p>
+  <p>Los badges de confiabilidad distinguen <span class="conf dato">dato</span> verificado en fuente oficial o reporte técnico, <span class="conf emp">empresa</span> declarado por la compañía o cámara, y <span class="conf est">estimación</span> de terceros o proyección de escenario. Verificá siempre contra el reporte técnico o la resolución original antes de tomar una decisión.</p>
+</div></footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modalbox">
+    <div class="modalhead"><h3 id="modalTitle"></h3>
+      <button class="expand" id="modalClose" aria-label="Cerrar" style="width:30px;height:30px">&#10005;</button></div>
+    <div class="modalchart"><div id="modalChart"></div></div>
+    <p class="modalfoot" id="modalNote"></p>
+  </div>
+</div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+  <div class="dhead">
+    <button class="dclose" id="dClose" aria-label="Cerrar ficha">✕</button>
+    <p class="eyebrow" id="dEyebrow" style="margin-bottom:8px"></p>
+    <h3 id="dTitle"></h3>
+  </div>
+  <div class="dbody" id="dBody"></div>
+</aside>
+
+<script>
+const SECTORES = {
+  cobre:{n:'Cobre', c:'#A85A32'},
+  litio:{n:'Litio', c:'#3E8CA0'},
+  oro:{n:'Oro y plata', c:'#9A7B22'},
+  hidro:{n:'Hidrocarburos', c:'#1F5673'},
+  mid:{n:'Midstream y GNL', c:'#2E7D6E'},
+  otros:{n:'Otros RIGI', c:'#6E7377'}
+};
+const ETAPAS = ['Exploración','Prefactib.','Factibilidad','FID','Construcción','Producción'];
+
+const P = [
+/* ---------- COBRE ---------- */
+{id:'vicuna',n:'Vicuña (Josemaría + Filo del Sol)',s:'cobre',prov:'San Juan',lat:-29.30,lng:-69.90,
+ op:'BHP + Lundin Mining (50/50)',pais:'Australia / Canadá',capex:9700,capexMin:7000,capexMax:18000,etapa:3,ini:2030,
+ prod:'395.000 t/a Cu · 711.000 oz Au · 22,2 Moz Ag',empC:12000,empO:5000,rigi:'Aprobado',rigiFecha:'16/06/2026',conf:'empresa',
+ nota:'JV cerrada en enero de 2025; BHP pagó USD 2.000 millones en total. Operado de forma independiente por Vicuña Corp. Aprobado bajo la categoría PEELP, con 40 años de estabilidad fiscal y regalías estabilizadas en 3% más un fideicomiso con pago anticipado de USD 250 millones. Desarrollo en tres etapas: Josemaría a cielo abierto, óxidos de Filo del Sol y sulfuros masivos. La evaluación económica es preliminar, no un estudio de factibilidad.',
+ fuente:'PEA integrada 16/02/2026 · resolución RIGI'},
+{id:'azules',n:'Los Azules',s:'cobre',prov:'San Juan',lat:-31.12,lng:-70.22,
+ op:'McEwen Copper (46,4%) · Stellantis · Nuton/Rio Tinto',pais:'Canadá',capex:3000,capexMin:2460,capexMax:4000,etapa:4,ini:2029,
+ prod:'204.800 t/a cátodos de cobre',empC:7391,empO:null,rigi:'Aprobado',rigiFecha:'09/2025',conf:'empresa',
+ nota:'Reservas probadas y probables por 10.200 millones de libras de cobre. VAN después de impuestos de USD 2.900 millones, vida útil de 27 años. Cátodos de alta pureza por SX/EW con opción de lixiviación Nuton. Acuerdo de colaboración con la IFC para liderar la deuda. Reuters informó en mayo de 2026 que Rio Tinto evaluaba aumentar su participación.',
+ fuente:'Feasibility Study 07/10/2025'},
+{id:'tacataca',n:'Taca Taca',s:'cobre',prov:'Salta',lat:-24.62,lng:-68.03,
+ op:'First Quantum Minerals (100%)',pais:'Canadá',capex:5250,capexMin:4230,capexMax:5250,etapa:3,ini:2030,
+ prod:'291.000 t/a Cu · 133.000 oz/a Au (primera década)',empC:4000,empO:2000,rigi:'En preparación',rigiFecha:null,conf:'empresa',
+ nota:'Pórfido de cobre, oro y molibdeno en la Puna a 3.500 metros, a 55 km de Chile y sin comunidades dentro del footprint. Reservas de 1.990 Mt con ley de 0,42% Cu. VAN después de impuestos de USD 5.920 millones y TIR de 19,3% a USD 4,50 la libra. Planta inicial de 40 Mtpa expandible a 60 Mtpa en el año 5, vida útil de 35 años. Un CAPEX mayor es improbable antes de 2028: depende del RIGI y del reinicio de Cobre Panamá.',
+ fuente:'NI 43-101 efectiva 31/12/2025'},
+{id:'mara',n:'MARA (Agua Rica + Alumbrera)',s:'cobre',prov:'Catamarca',lat:-27.38,lng:-66.62,
+ op:'Glencore · Camyen (estatal provincial)',pais:'Suiza',capex:4500,etapa:3,ini:2028,
+ prod:'>200.000 t/a Cu en concentrado (primeros 10 años)',empC:null,empO:null,rigi:'En evaluación',rigiFecha:null,conf:'empresa',
+ nota:'Único brownfield de la cartera. Glencore consolidó el control comprando el 19% de Newmont por unos USD 160 millones y la participación de Pan American Silver por unos USD 475 millones. Estrategia secuencial: reactivar Bajo de la Alumbrera hacia fines de 2026 con producción desde el primer semestre de 2028, y recién después integrar Agua Rica hacia 2032. Reservas de 5,4 Mt de cobre y 7,4 Moz de oro.',
+ fuente:'Glencore · Secretaría de Minería'},
+{id:'pachon',n:'El Pachón',s:'cobre',prov:'San Juan',lat:-31.75,lng:-70.40,
+ op:'Glencore',pais:'Suiza',capex:10300,capexMin:9000,capexMax:11600,etapa:3,ini:2034,
+ prod:'280.000 t/a Cu',empC:12350,empO:null,rigi:'En evaluación',rigiFecha:null,conf:'empresa',
+ nota:'25,4 Mt de recursos con ley promedio de 0,5%. Estudio de factibilidad e impacto ambiental en curso. Es el principal proyecto de largo plazo de Glencore en Argentina y el de mayor impacto laboral declarado en la cartera minera en evaluación.',
+ fuente:'Glencore · cartera RIGI en evaluación'},
+{id:'altar',n:'Altar',s:'cobre',prov:'San Juan',lat:-31.50,lng:-70.42,
+ op:'Aldebaran Resources · Sibanye-Stillwater',pais:'Canadá / Sudáfrica',capex:null,etapa:2,ini:2032,
+ prod:'9 Mt de cobre contenido en recursos · vida útil 48 años',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'estimacion',
+ nota:'Uno de los depósitos más grandes del país en exploración avanzada. Recursos declarados de 9 Mt de cobre contenido, 93,8 Moz de oro y 5,1 Moz de plata. Sin CAPEX publicado.',
+ fuente:'Secretaría de Minería · informe PDAC 2026'},
+{id:'sanjorge',n:'PSJ Cobre Mendocino (San Jorge)',s:'cobre',prov:'Mendoza',lat:-32.50,lng:-69.32,
+ op:'Zonda Metals GmbH · Alberdi Energy',pais:'Suiza / Argentina',capex:891,etapa:4,ini:2029,
+ prod:'Concentrado de cobre',empC:6300,empO:null,rigi:'Aprobado',rigiFecha:'26/05/2026',conf:'empresa',
+ nota:'En el departamento de Uspallata. Avanza bajo el marco de la Ley 7722 mendocina, que exige aprobación legislativa por etapa y limita el uso de sustancias tóxicas.',
+ fuente:'Resolución RIGI 26/05/2026'},
+
+/* ---------- LITIO ---------- */
+{id:'rincon',n:'Rincón',s:'litio',prov:'Salta',lat:-24.00,lng:-66.92,
+ op:'Rio Tinto',pais:'Reino Unido / Australia',capex:3000,capexMin:2744,capexMax:3000,etapa:5,ini:2028,
+ prod:'60.000 t/a carbonato grado batería (DLE)',empC:1985,empO:null,rigi:'Aprobado',rigiFecha:'05/2025',conf:'dato',
+ nota:'El mayor proyecto de litio bajo RIGI. Primer envío comercial de 200 toneladas a Shanghái en marzo de 2026. Usa extracción directa de litio en lugar de evaporación tradicional.',
+ fuente:'Resolución RIGI · Rio Tinto'},
+{id:'cauchari',n:'Cauchari-Olaroz',s:'litio',prov:'Jujuy',lat:-23.52,lng:-66.72,
+ op:'Ganfeng (46,7%) · Lithium Argentina (44,8%) · JEMSE (8,5%)',pais:'China / Canadá / Argentina',capex:1166,etapa:6,ini:2023,
+ prod:'40.000 t/a hoy → 85.000 t/a en 2028',empC:null,empO:null,rigi:'Aprobado',rigiFecha:'04/06/2026',conf:'dato',
+ nota:'Única adhesión al RIGI con participación de una empresa estatal provincial, JEMSE. Produjo unas 25.000 t en 2024 y entre 30.000 y 35.000 t en 2025. Exporta 80% a China y 20% a Tailandia.',
+ fuente:'Resolución RIGI 04/06/2026'},
+{id:'fenix',n:'Fénix (Salar del Hombre Muerto)',s:'litio',prov:'Catamarca',lat:-25.41,lng:-66.93,
+ op:'Rio Tinto (ex Arcadium/Livent)',pais:'Reino Unido / Australia',capex:530,etapa:6,ini:1998,
+ prod:'Ampliación de +9.500 t/a',empC:1143,empO:504,rigi:'Aprobado',rigiFecha:null,conf:'dato',
+ nota:'La operación de litio más antigua del país. La ampliación aprobada bajo RIGI suma exportaciones por unos USD 165 millones anuales.',
+ fuente:'Resolución RIGI'},
+{id:'olaroz',n:'Olaroz',s:'litio',prov:'Jujuy',lat:-23.48,lng:-66.75,
+ op:'Rio Tinto (ex Allkem)',pais:'Reino Unido / Australia',capex:null,etapa:6,ini:2015,
+ prod:'~50.000 t/a con la segunda etapa',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'En producción con la segunda etapa en marcha. Evaporación tradicional en pozas.',fuente:'Rio Tinto'},
+{id:'centenario',n:'Centenario-Ratones',s:'litio',prov:'Salta',lat:-24.90,lng:-67.02,
+ op:'Eramet · Tsingshan',pais:'Francia / China',capex:null,etapa:6,ini:2024,
+ prod:'24.000 t/a carbonato equivalente',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'Arrancó en diciembre de 2024 con tecnología de extracción directa.',fuente:'Eramet'},
+{id:'saldeoro',n:'Sal de Oro',s:'litio',prov:'Salta',lat:-25.30,lng:-66.90,
+ op:'POSCO',pais:'Corea del Sur',capex:633,etapa:6,ini:2024,
+ prod:'25.000 t/a hidróxido de litio',empC:null,empO:null,rigi:'En evaluación',rigiFecha:null,conf:'empresa',
+ nota:'Planta integrada para producir hidróxido, fosfato y carbonato. Inaugurada en octubre de 2024, apunta a integrarse en cadenas de mayor valor agregado.',fuente:'POSCO'},
+{id:'mariana',n:'Mariana',s:'litio',prov:'Salta',lat:-24.72,lng:-67.10,
+ op:'Ganfeng Lithium',pais:'China',capex:980,etapa:6,ini:2025,
+ prod:'20.000 t/a cloruro de litio',empC:null,empO:null,rigi:'Rechazado',rigiFecha:'07/2025',conf:'dato',
+ nota:'Único rechazo del RIGI: la solicitud por unos USD 273 millones fue denegada en julio de 2025 porque el proyecto ya estaba construido y operativo, y no cumplía el requisito de inversión mínima para los dos años siguientes. Inversión total de unos USD 980 millones, incluyendo un parque solar de USD 190 millones.',
+ fuente:'Resolución de rechazo 07/2025'},
+{id:'3q',n:'Tres Quebradas (3Q)',s:'litio',prov:'Catamarca',lat:-27.02,lng:-68.50,
+ op:'Liex / Zijin Mining',pais:'China',capex:709,etapa:5,ini:2026,
+ prod:'40.000 t/a · vida útil superior a 19 años',empC:4406,empO:null,rigi:'Aprobado',rigiFecha:null,conf:'dato',
+ nota:'Exportaciones proyectadas de unos USD 400 millones anuales.',fuente:'Resolución RIGI'},
+{id:'hmo',n:'Hombre Muerto Oeste',s:'litio',prov:'Catamarca',lat:-25.52,lng:-67.02,
+ op:'Galan Lithium',pais:'Australia',capex:217,etapa:6,ini:2026,
+ prod:'12.000 t/a',empC:null,empO:null,rigi:'Aprobado',rigiFecha:null,conf:'dato',
+ nota:'Operativo desde abril de 2026. Uno de los dos proyectos RIGI que ya pasaron a producción.',fuente:'Resolución RIGI'},
+{id:'saldevida',n:'Sal de Vida',s:'litio',prov:'Catamarca',lat:-25.62,lng:-66.82,
+ op:'Rio Tinto',pais:'Reino Unido / Australia',capex:818,etapa:5,ini:2027,
+ prod:'Carbonato de litio grado batería',empC:null,empO:null,rigi:'En evaluación',rigiFecha:null,conf:'empresa',
+ nota:'Reactivación del desarrollo bajo control de Rio Tinto tras la adquisición de Arcadium.',fuente:'Rio Tinto · cartera RIGI'},
+{id:'ppg',n:'Pozuelos-Pastos Grandes (PPG)',s:'litio',prov:'Salta',lat:-24.60,lng:-66.80,
+ op:'Ganfeng (67%) · Lithium Argentina (33%), vía Lithea',pais:'China / Canadá',capex:3600,capexMin:3000,capexMax:4245,etapa:3,ini:2029,
+ prod:'Meta de 150.000 t/a en tres fases',empC:null,empO:null,rigi:'En evaluación',rigiFecha:null,conf:'empresa',
+ nota:'Combina extracción directa con evaporación solar. Con declaración de impacto ambiental otorgada, busca ingresar al RIGI para convertirse en una de las mayores operaciones de litio del mundo.',
+ fuente:'Cartera RIGI en evaluación'},
+{id:'sla',n:'Sal de los Ángeles',s:'litio',prov:'Salta',lat:-25.02,lng:-66.80,
+ op:'s/d',pais:'s/d',capex:null,etapa:5,ini:2026,prod:'s/d',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'estimacion',
+ nota:'En desarrollo. Sin datos públicos consolidados de CAPEX ni capacidad.',fuente:'Relevamiento sectorial'},
+{id:'argosy',n:'Salar del Rincón',s:'litio',prov:'Salta',lat:-24.02,lng:-67.00,
+ op:'Argosy Minerals',pais:'Australia',capex:null,etapa:5,ini:2026,prod:'s/d',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'estimacion',
+ nota:'Planta de escala reducida en desarrollo.',fuente:'Relevamiento sectorial'},
+{id:'kachi',n:'Kachi',s:'litio',prov:'Catamarca',lat:-26.02,lng:-67.30,
+ op:'Lake Resources',pais:'Australia',capex:null,etapa:3,ini:null,prod:'s/d · tecnología DLE',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'estimacion',
+ nota:'Proyecto de extracción directa en etapa de factibilidad, sin cronograma firme publicado.',fuente:'Lake Resources'},
+{id:'sdlp',n:'Sal de la Puna',s:'litio',prov:'Salta',lat:-24.32,lng:-66.90,
+ op:'s/d',pais:'s/d',capex:null,etapa:2,ini:null,prod:'s/d',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'estimacion',
+ nota:'En desarrollo temprano.',fuente:'Relevamiento sectorial'},
+
+/* ---------- ORO Y PLATA ---------- */
+{id:'veladero',n:'Veladero',s:'oro',prov:'San Juan',lat:-29.38,lng:-69.98,
+ op:'Barrick (50%) · Shandong Gold (50%)',pais:'Canadá / China',capex:380,etapa:6,ini:2005,
+ prod:'505.000 oz de oro (2024)',empC:null,empO:3800,rigi:'Aprobado',rigiFecha:'03/2026',conf:'dato',
+ nota:'Principal mina de oro del país. En 2024 subió 22% interanual, su mejor desempeño en cinco años. Acumula más de USD 14.400 millones en exportaciones. La ampliación de USD 380 millones extiende la vida útil, con operación desde diciembre de 2028. El 91% del plantel es sanjuanino.',
+ fuente:'Reporte 4T Barrick · resolución RIGI'},
+{id:'cerronegro',n:'Cerro Negro',s:'oro',prov:'Santa Cruz',lat:-46.72,lng:-70.20,
+ op:'Newmont',pais:'Estados Unidos',capex:540,etapa:6,ini:2015,
+ prod:'~300.000 oz/a de oro',empC:null,empO:1400,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'Expansión de USD 540 millones para extender la vida útil hasta 2034.',fuente:'Newmont'},
+{id:'vanguardia',n:'Cerro Vanguardia',s:'oro',prov:'Santa Cruz',lat:-48.40,lng:-68.30,
+ op:'AngloGold Ashanti (92,5%) · Fomicruz (7,5%)',pais:'Sudáfrica / Argentina',capex:null,etapa:6,ini:1998,
+ prod:'~200.000 oz/a de oro más plata',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'En operación desde 1998. La ley en descenso se compensa con mayor volumen procesado.',fuente:'AngloGold Ashanti'},
+{id:'lindero',n:'Lindero',s:'oro',prov:'Salta',lat:-25.02,lng:-68.40,
+ op:'Fortuna Mining',pais:'Canadá',capex:null,etapa:6,ini:2021,
+ prod:'100.000 a 120.000 oz/a de oro',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'Pórfido de oro en producción desde 2021. Costo sostenido de mantenimiento de unos USD 1.911 por onza en el primer trimestre de 2025, presionado por la apreciación del peso.',
+ fuente:'Fortuna Mining'},
+{id:'cerromoro',n:'Cerro Moro',s:'oro',prov:'Santa Cruz',lat:-48.02,lng:-67.52,
+ op:'Pan American Silver',pais:'Canadá',capex:null,etapa:6,ini:2018,
+ prod:'84.600 oz Au · 7,5 Moz Ag por año',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'Operación de alta ley de oro y plata en el macizo del Deseado.',fuente:'Pan American Silver'},
+{id:'puna',n:'Puna Operations (Chinchillas)',s:'oro',prov:'Jujuy',lat:-22.82,lng:-66.22,
+ op:'SSR Mining',pais:'Canadá / Estados Unidos',capex:null,etapa:6,ini:2019,
+ prod:'Plata, plomo y zinc',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'Concentrados de plata con plomo y zinc.',fuente:'SSR Mining'},
+{id:'manantial',n:'Manantial Espejo',s:'oro',prov:'Santa Cruz',lat:-48.92,lng:-69.52,
+ op:'Pan American Silver',pais:'Canadá',capex:null,etapa:6,ini:2009,
+ prod:'Oro y plata',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'Operación madura que sostiene el volumen provincial.',fuente:'Pan American Silver'},
+{id:'donnicolas',n:'Don Nicolás',s:'oro',prov:'Santa Cruz',lat:-47.52,lng:-68.02,
+ op:'Cerrado Gold',pais:'Canadá',capex:null,etapa:6,ini:2018,
+ prod:'Oro',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'estimacion',
+ nota:'Operación de menor escala en el macizo del Deseado.',fuente:'Relevamiento sectorial'},
+{id:'gualcamayo',n:'Nuevo Gualcamayo (Carbonatos Profundos)',s:'oro',prov:'San Juan',lat:-29.52,lng:-68.72,
+ op:'Aisa Group / Eris',pais:'Argentina',capex:593,capexMin:520,capexMax:665,etapa:5,ini:2030,
+ prod:'7,1 Moz de oro en recursos · 4,9 Moz en reservas',empC:null,empO:null,rigi:'Aprobado',rigiFecha:'27/11/2025',conf:'empresa',
+ nota:'Exportaciones proyectadas de USD 26.500 millones entre 2030 y 2055. La compañía anunció un segundo RIGI por USD 1.500 millones bajo el Programa G50.',
+ fuente:'Resolución RIGI 27/11/2025'},
+{id:'diablillos',n:'Diablillos',s:'oro',prov:'Salta',lat:-25.32,lng:-66.82,
+ op:'AbraSilver (Central Puerto 9,9% vía Proener)',pais:'Canadá / Argentina',capex:482,capexMin:482,capexMax:764,etapa:4,ini:2029,
+ prod:'199 Moz de plata y 1,7 Moz de oro en reservas',empC:2013,empO:null,rigi:'Aprobado',rigiFecha:null,conf:'empresa',
+ nota:'Exportaciones estimadas en unos USD 417 millones anuales desde julio de 2029.',fuente:'Resolución RIGI · AbraSilver'},
+{id:'hualilan',n:'Hualilán',s:'oro',prov:'San Juan',lat:-30.72,lng:-68.92,
+ op:'Challenger Gold',pais:'Australia',capex:null,etapa:2,ini:null,prod:'s/d',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'estimacion',
+ nota:'Exploración avanzada de oro.',fuente:'Challenger Gold'},
+{id:'calcatreu',n:'Calcatreu',s:'oro',prov:'Río Negro',lat:-41.52,lng:-68.92,
+ op:'Patagonia Gold',pais:'Reino Unido',capex:null,etapa:3,ini:null,prod:'s/d',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'estimacion',
+ nota:'Habilitado tras la derogación en 2011 de la Ley 3981 rionegrina, que había prohibido la minería metalífera en 2005.',
+ fuente:'Patagonia Gold'},
+{id:'navidad',n:'Navidad',s:'oro',prov:'Chubut',lat:-42.32,lng:-68.62,
+ op:'Pan American Silver',pais:'Canadá',capex:null,etapa:3,ini:null,
+ prod:'Una de las mayores reservas de plata del mundo',empC:null,empO:null,rigi:'Bloqueado',rigiFecha:null,conf:'dato',
+ nota:'BLOQUEADO por la Ley 5001 de Chubut, hoy XVII-68, que prohíbe la minería metalífera a cielo abierto y el uso de cianuro. La ley fue ratificada por la Corte Suprema y el intento de zonificación de diciembre de 2021 se derogó tras un estallido social.',
+ fuente:'Ley XVII-68 · Pan American Silver'},
+{id:'suyai',n:'Suyai',s:'oro',prov:'Chubut',lat:-42.92,lng:-71.32,
+ op:'s/d',pais:'s/d',capex:null,etapa:2,ini:null,prod:'s/d',empC:null,empO:null,rigi:'Bloqueado',rigiFecha:null,conf:'dato',
+ nota:'BLOQUEADO por la Ley 5001 de Chubut.',fuente:'Ley XVII-68'},
+
+/* ---------- OTROS MINERALES ---------- */
+{id:'cerrosolo',n:'Cerro Solo (uranio)',s:'otros',prov:'Chubut',lat:-44.52,lng:-68.82,
+ op:'CNEA',pais:'Argentina',capex:null,etapa:2,ini:null,prod:'Uranio',empC:null,empO:null,rigi:'Bloqueado',rigiFecha:null,conf:'dato',
+ nota:'Impulsado dentro del Plan Nuclear Argentina 2025 pero limitado por la Ley XVII-68: el método a cielo abierto está prohibido y la CNEA descarta la lixiviación in situ por la hidrogeología del yacimiento.',
+ fuente:'CNEA · Ley XVII-68'},
+{id:'ivana',n:'Amarillo Grande / Ivana (uranio)',s:'otros',prov:'Río Negro',lat:-41.02,lng:-67.52,
+ op:'Blue Sky Uranium',pais:'Canadá',capex:null,etapa:2,ini:null,prod:'Uranio y vanadio',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'estimacion',
+ nota:'Exploración de uranio y vanadio. Los recursos nacionales de uranio superan las 36.000 toneladas.',fuente:'Blue Sky Uranium'},
+{id:'potasio',n:'Potasio Río Colorado',s:'otros',prov:'Mendoza',lat:-35.92,lng:-69.42,
+ op:'s/d (ex Vale)',pais:'s/d',capex:null,etapa:3,ini:null,prod:'Potasio',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'dato',
+ nota:'Paralizado desde el retiro de Vale.',fuente:'Relevamiento sectorial'},
+
+/* ---------- HIDROCARBUROS UPSTREAM ---------- */
+{id:'rinconaranda',n:'Rincón de Aranda',s:'hidro',prov:'Neuquén',lat:-38.42,lng:-68.92,
+ op:'Pampa Energía',pais:'Argentina',capex:4521,etapa:6,ini:2025,
+ prod:'27.000 bbl/d hoy → 45.000 bbl/d en 2027',empC:null,empO:null,rigi:'Aprobado',rigiFecha:'06/2026',conf:'dato',
+ nota:'Primer proyecto de upstream aprobado bajo el RIGI. Exportaciones proyectadas en USD 17.000 millones a lo largo de 30 años. Pampa multiplicó por nueve su resultado operativo de upstream en el primer trimestre de 2026.',
+ fuente:'Resolución RIGI 06/2026'},
+{id:'lomacampana',n:'Loma Campana',s:'hidro',prov:'Neuquén',lat:-38.52,lng:-68.92,
+ op:'YPF · Chevron',pais:'Argentina / Estados Unidos',capex:null,etapa:6,ini:2013,
+ prod:'Shale oil · bloque insignia de YPF',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'Primer desarrollo masivo de Vaca Muerta. YPF produce 349.000 bbl/d a nivel compañía, el 38% del total nacional, con el shale ya en 74% de su producción.',
+ fuente:'Secretaría de Energía'},
+{id:'amargachica',n:'La Amarga Chica',s:'hidro',prov:'Neuquén',lat:-38.62,lng:-68.82,
+ op:'YPF · Petronas',pais:'Argentina / Malasia',capex:null,etapa:6,ini:2017,
+ prod:'Shale oil',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'Uno de los bloques de mayor productividad de la cuenca.',fuente:'Secretaría de Energía'},
+{id:'bajadapalo',n:'Bajada del Palo Oeste',s:'hidro',prov:'Neuquén',lat:-38.32,lng:-68.62,
+ op:'Vista Energy',pais:'México / Argentina',capex:null,etapa:6,ini:2018,
+ prod:'Vista alcanzó 134,7 kboe/d de producción total',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'dato',
+ nota:'Núcleo del portafolio de Vista, con una matriz prácticamente 100% shale. Vista produce 80.000 bbl/d y facturó USD 865 millones en el primer trimestre de 2026.',
+ fuente:'Vista Energy · Secretaría de Energía'},
+{id:'fortinpiedra',n:'Fortín de Piedra',s:'hidro',prov:'Neuquén',lat:-38.22,lng:-68.92,
+ op:'Tecpetrol',pais:'Argentina',capex:null,etapa:6,ini:2018,
+ prod:'Shale gas',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'Principal bloque de shale gas de desarrollo acelerado del país.',fuente:'Secretaría de Energía'},
+{id:'aguadapichana',n:'Aguada Pichana Este',s:'hidro',prov:'Neuquén',lat:-38.02,lng:-69.22,
+ op:'TotalEnergies',pais:'Francia',capex:null,etapa:6,ini:2017,
+ prod:'Shale gas',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'empresa',
+ nota:'Bloque gasífero clave para el abastecimiento invernal.',fuente:'Secretaría de Energía'},
+{id:'choique',n:'Bajo del Choique - La Invernada',s:'hidro',prov:'Neuquén',lat:-38.42,lng:-69.32,
+ op:'Pluspetrol',pais:'Argentina',capex:12240,etapa:3,ini:null,
+ prod:'Shale oil · desarrollo masivo',empC:null,empO:null,rigi:'En evaluación',rigiFecha:null,conf:'empresa',
+ nota:'Segundo mayor monto de la cartera RIGI en evaluación después de Argentina LNG. Pluspetrol produce 89.000 bbl/d y es el tercer operador del país.',
+ fuente:'Cartera RIGI en evaluación'},
+{id:'argerich',n:'Argerich (CAN-100, offshore)',s:'hidro',prov:'Offshore Buenos Aires',lat:-38.52,lng:-56.52,
+ op:'Equinor (35%) · YPF (35%) · Shell (30%)',pais:'Noruega / Argentina / Reino Unido',capex:100,etapa:1,ini:null,
+ prod:'Pozo seco',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'dato',
+ nota:'A 315 km de Mar del Plata, con lecho marino a 1.527 metros. Perforado entre abril y junio de 2024 a un costo de unos USD 100 millones y declarado seco el 26 de junio: confirmó el modelo geológico pero sin hidrocarburos comerciales. Frenó las expectativas del offshore argentino, que hablaban de hasta 1.000 millones de barriles. Quedan los bloques CAN-102 y CAN-114 en carpeta.',
+ fuente:'Equinor · Secretaría de Energía'},
+
+/* ---------- MIDSTREAM Y GNL ---------- */
+{id:'vmos',n:'VMOS (Vaca Muerta Oil Sur)',s:'mid',prov:'Neuquén → Río Negro',lat:-40.72,lng:-65.12,
+ op:'YPF · PAE · Vista · Pampa · Pluspetrol · Chevron · Tecpetrol',pais:'Argentina y socios',capex:3000,etapa:5,ini:2026,
+ prod:'550.000 bbl/d, ampliable a 700.000',empC:10000,empO:null,rigi:'Aprobado',rigiFecha:null,conf:'dato',
+ nota:'437 km desde Añelo hasta Punta Colorada, con terminal de seis tanques de 750.000 barriles y monoboyas. Avance del 77 al 80% en junio de 2026, financiado con un préstamo sindicado de USD 2.000 millones. Arranca con 180.000 a 190.000 bbl/d y llega a 550.000 en el segundo semestre de 2027. A plena capacidad habilita exportaciones por unos USD 15.000 millones anuales. Shell salió del consorcio.',
+ fuente:'YPF · resolución RIGI'},
+{id:'oldelval',n:'Oldelval Duplicar+',s:'mid',prov:'Neuquén → Río Negro',lat:-39.02,lng:-67.62,
+ op:'Oldelval',pais:'Argentina',capex:25,etapa:6,ini:2025,
+ prod:'De 530.000 a ~730.000 bbl/d',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'dato',
+ nota:'Inaugurado en marzo de 2025 y saturado al 100% en agosto de 2026. La ampliación de USD 25 millones suma 200.000 bbl/d en esquema interrumpible.',
+ fuente:'Oldelval'},
+{id:'duplicarnorte',n:'Duplicar Norte',s:'mid',prov:'Neuquén → Río Negro',lat:-38.92,lng:-68.02,
+ op:'Oldelval · Techint E&C',pais:'Argentina',capex:380,etapa:5,ini:2026,
+ prod:'220.000 bbl/d en fase 1 → 500.000 bbl/d',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'dato',
+ nota:'207 a 209 km de Auca Mahuida a Allen en cañería de 24 pulgadas. Fase 1 a fines de 2026 y capacidad plena en marzo de 2027. Alimenta el sistema troncal que abastece al VMOS.',
+ fuente:'Oldelval · Techint'},
+{id:'peritomoreno',n:'Ampliación Gasoducto Perito Moreno',s:'mid',prov:'Neuquén → Buenos Aires',lat:-37.02,lng:-63.02,
+ op:'TGS',pais:'Argentina',capex:550,etapa:5,ini:2027,
+ prod:'+12 MMm³/d al anillo metropolitano',empC:7535,empO:null,rigi:'Aprobado',rigiFecha:null,conf:'dato',
+ nota:'De Tratayén a Salliqueló, operativo antes del invierno de 2027. Es el segundo mayor impacto laboral de toda la cartera RIGI. El sistema de transporte de gas quedó prácticamente saturado tras las ampliaciones previas, lo que acota el margen de crecimiento de la producción gasífera.',
+ fuente:'TGS · resolución RIGI'},
+{id:'gasnorte',n:'Reversión del Gasoducto Norte',s:'mid',prov:'Santa Fe → NOA',lat:-27.02,lng:-64.52,
+ op:'TGN',pais:'Argentina',capex:740,etapa:6,ini:2024,
+ prod:'15 MMm³/d inicial → 19 MMm³/d',empC:null,empO:null,rigi:'No presentado',rigiFecha:null,conf:'dato',
+ nota:'Financiado con USD 540 millones de crédito CAF más fondos públicos. Inaugurado en noviembre de 2024, puso fin a 18 años de importación de gas boliviano por unos USD 20.000 millones acumulados. Persistieron importaciones puntuales por obras complementarias pendientes. TGN evalúa exportar a Brasil vía Bolivia, pasando de 3 a 10 MMm³/d.',
+ fuente:'TGN · Secretaría de Energía'},
+{id:'sanmatias',n:'San Matías Pipeline',s:'mid',prov:'Neuquén → Río Negro',lat:-40.52,lng:-65.52,
+ op:'Pan American Energy',pais:'Argentina / Reino Unido',capex:1000,etapa:5,ini:2028,
+ prod:'Gasoducto dedicado a la exportación de GNL',empC:null,empO:null,rigi:'Aprobado',rigiFecha:null,conf:'dato',
+ nota:'Gasoducto dedicado que alimenta el polo de licuefacción del Golfo San Matías. Operativo desde mayo de 2028.',
+ fuente:'Resolución RIGI'},
+{id:'arglng',n:'Argentina LNG',s:'mid',prov:'Río Negro (Golfo San Matías)',lat:-41.02,lng:-65.02,
+ op:'YPF (36%) · Eni (32%) · XRG-ADNOC (32%)',pais:'Argentina / Italia / Emiratos',capex:51000,etapa:3,ini:2030,
+ prod:'12 Mtpa en dos unidades flotantes · techo teórico 30 Mtpa',empC:null,empO:null,rigi:'En evaluación',rigiFecha:null,conf:'empresa',
+ nota:'La mayor inversión privada de la historia argentina. Acuerdo de desarrollo conjunto vinculante firmado el 12 de febrero de 2026, con decisión final de inversión apuntada al segundo semestre de 2026 y primeras exportaciones en 2030-2031. Financiamiento estructurado por JP Morgan, con un préstamo mencionado en torno a USD 16.000 millones y más de 200 instituciones contactadas. Shell se retiró cuando el alcance de su fase se redujo a la mitad.',
+ fuente:'Eni · YPF · cartera RIGI'},
+{id:'southern',n:'Southern Energy',s:'mid',prov:'Río Negro (Golfo San Matías)',lat:-41.12,lng:-65.02,
+ op:'PAE · YPF · Pampa · Harbour Energy · Golar LNG',pais:'Argentina / Reino Unido / Noruega',capex:7000,capexMin:7000,capexMax:15000,etapa:5,ini:2027,
+ prod:'~6 Mtpa entre el Hilli Episeyo y el MK II',empC:null,empO:null,rigi:'Aprobado',rigiFecha:null,conf:'dato',
+ nota:'Primera exportación de GNL a gran escala del país. El buque Hilli Episeyo arranca en noviembre de 2027 y el MK II a fines de 2028. Contrato firmado con SEFE, la estatal alemana, por más de USD 7.000 millones: 2 Mtpa durante ocho años, cerca del 80% de la capacidad del primer buque.',
+ fuente:'Resolución RIGI · Golar LNG'},
+
+/* ---------- OTROS RIGI ---------- */
+{id:'elquemado',n:'Parque Solar El Quemado',s:'otros',prov:'Mendoza',lat:-32.92,lng:-68.72,
+ op:'YPF Luz',pais:'Argentina',capex:212,etapa:6,ini:2025,
+ prod:'305 MW solares',empC:null,empO:null,rigi:'Aprobado',rigiFecha:'12/2025',conf:'dato',
+ nota:'Primer proyecto RIGI en llegar a operación, en diciembre de 2025.',fuente:'Resolución RIGI'},
+{id:'sidersa',n:'Sidersa',s:'otros',prov:'Buenos Aires',lat:-33.72,lng:-59.62,
+ op:'Sidersa',pais:'Argentina',capex:286,etapa:5,ini:null,
+ prod:'Acería',empC:null,empO:null,rigi:'Aprobado',rigiFecha:null,conf:'dato',
+ nota:'27% de avance de obra.',fuente:'Resolución RIGI'},
+{id:'timbues',n:'Terminal Timbúes',s:'otros',prov:'Santa Fe',lat:-32.62,lng:-60.72,
+ op:'Terminales y Servicios',pais:'Argentina',capex:277,etapa:5,ini:null,
+ prod:'Terminal portuaria',empC:null,empO:null,rigi:'Aprobado',rigiFecha:null,conf:'dato',
+ nota:'En construcción sobre el Paraná.',fuente:'Resolución RIGI'},
+{id:'olavarria',n:'Parque Eólico Olavarría',s:'otros',prov:'Buenos Aires',lat:-36.92,lng:-60.32,
+ op:'PCR · Acindar',pais:'Argentina',capex:276,etapa:5,ini:2026,
+ prod:'180 MW eólicos',empC:null,empO:null,rigi:'Aprobado',rigiFecha:null,conf:'dato',
+ nota:'Operativo desde diciembre de 2026.',fuente:'Resolución RIGI'}
+];
+
+const FISCAL = [
+ ['Regalías mineras','Hasta 3%, opcional 5% para proyectos nuevos','Ley 24.196 art. 22 · Ley 27.743'],
+ ['Regalías hidrocarburos','12% sobre boca de pozo, +3% en prórroga, tope 18%','Ley 17.319 art. 59 · Ley 27.007'],
+ ['Retenciones cobre y oro','0%','Decreto 563/2025'],
+ ['Retenciones litio y plata','4,5%','Decreto 563/2025'],
+ ['Retenciones crudo convencional','0% con Brent ≤ 65, 8% con Brent ≥ 80 (móvil)','Decreto 59/2026'],
+ ['Retenciones shale','8%','Decreto 59/2026'],
+ ['Retenciones gas natural','Sin dato público confiable','s/d'],
+ ['Ganancias bajo RIGI','25% contra 35% general','Ley 27.742 Título VII']
+];
+
+const LEYES = [
+ {p:'Chubut',l:'Ley 5001 / XVII-68 (2003)',t:'Prohíbe la minería metalífera a cielo abierto y el uso de cianuro. Ratificada por la Corte Suprema. La zonificación de diciembre de 2021 se derogó tras un estallido social.',x:'Bloquea Navidad, Suyai y limita Cerro Solo'},
+ {p:'Mendoza',l:'Ley 7722 (2007)',t:'Exige aprobación legislativa por etapa y limita sustancias tóxicas. El intento de reforma de diciembre de 2019 se revirtió por protesta masiva.',x:'Condiciona PSJ Cobre Mendocino, que igual avanza'},
+ {p:'Río Negro',l:'Ley 3981, derogada en 2011',t:'La prohibición general de 2005 ya no rige.',x:'Habilita Calcatreu'},
+ {p:'Nacional',l:'Ley de Glaciares',t:'Protege el ambiente periglacial y genera litigios recurrentes sobre los inventarios.',x:'Condiciona proyectos de alta cordillera en San Juan'},
+ {p:'La Rioja, Tucumán, La Pampa',l:'Legislaciones restrictivas vigentes',t:'Distintos grados de limitación a la minería metalífera.',x:'Sin proyectos de gran escala en cartera'}
+];
+
+const HITOS = [
+ {w:'2S 2026',q:'Decisión final de inversión de Argentina LNG',y:'Destraba USD 51.000 millones y el préstamo de JP Morgan. Es el hito individual más grande de toda la cartera.'},
+ {w:'Fin 2026',q:'Sanción de Vicuña',y:'Confirma o posterga el mayor proyecto de cobre del país y, con él, la curva de producción hacia 2030.'},
+ {w:'Dic 2026 – Ene 2027',q:'Primera exportación por VMOS',y:'Valida el corredor Añelo–Punta Colorada y libera el cuello de botella logístico del crudo.'},
+ {w:'Nov 2027',q:'Arranque del Hilli Episeyo',y:'Primera exportación de GNL a gran escala, con contrato ya firmado con la alemana SEFE.'}
+];
+
+const EXPO = {
+ años:[2025,2027,2030,2032,2035],
+ series:[
+  {n:'BCRA · energía + minería',d:[13,null,51,null,null],c:'#1F5673'},
+  {n:'CEPH · energía (escenario acelerado)',d:[null,null,40.1,null,41.4],c:'#2E7D6E'},
+  {n:'Minería oficial',d:[4.5,null,null,null,31],c:'#A85A32'},
+  {n:'Cobre (Secretaría de Minería / S&P)',d:[0,null,5.3,11.4,17.8],c:'#C98A5E'}
+ ]
+};
+const COBRE_CURVA = {
+ años:[2028,2029,2030,2031,2032,2034,2035],
+ series:[
+  {n:'MARA',d:[75,75,90,200,200,200,200]},
+  {n:'PSJ Cobre Mendocino',d:[0,30,40,40,40,40,40]},
+  {n:'Los Azules',d:[0,60,150,205,205,205,205]},
+  {n:'Taca Taca',d:[0,0,150,291,291,291,291]},
+  {n:'Vicuña',d:[0,0,200,395,395,395,395]},
+  {n:'Altar',d:[0,0,0,0,90,90,90]},
+  {n:'El Pachón',d:[0,0,0,0,0,280,280]}
+ ]
+};
+const PETROLEO = [
+ {n:'YPF',v:349},{n:'Pan American Energy',v:98},{n:'Pluspetrol',v:89},
+ {n:'Vista Energy',v:80},{n:'Resto de operadores',v:299}
+];
+const LITIO_CAP = [
+ {n:'Cauchari-Olaroz',hoy:40000,meta:85000},{n:'Rincón',hoy:0,meta:60000},
+ {n:'Olaroz',hoy:50000,meta:50000},{n:'Tres Quebradas',hoy:0,meta:40000},
+ {n:'Sal de Oro',hoy:25000,meta:25000},{n:'Centenario-Ratones',hoy:24000,meta:24000},
+ {n:'Mariana',hoy:20000,meta:20000},{n:'Hombre Muerto Oeste',hoy:12000,meta:12000},
+ {n:'Fénix',hoy:20000,meta:29500},{n:'Pozuelos-Pastos Grandes',hoy:0,meta:150000}
+];
+
+/* ============================================================
+   VIZ — gráficos y mapa en SVG puro. Cero dependencias externas.
+   Cada función recibe un id de contenedor y devuelve el SVG ya montado.
+   ============================================================ */
+const NS = 'http://www.w3.org/2000/svg';
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const AXC = '#C8CCC2', GRID = '#E4E7DE', TXT = '#5A646C';
+
+function svgWrap(id, w, h, inner){
+  const el = document.getElementById(id);
+  if(!el) return null;
+  el.innerHTML = `<svg viewBox="0 0 ${w} ${h}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"
+    font-family="'IBM Plex Mono',ui-monospace,monospace" font-size="11" role="img">${inner}</svg>`;
+  return el;
+}
+function niceTicks(min, max, n){
+  if(min===max){ max = min + 1; }
+  const span = max - min, raw = span/n, mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const norm = raw/mag;
+  const step = (norm<=1?1:norm<=2?2:norm<=5?5:10)*mag;
+  const out = []; let v = Math.ceil(min/step)*step;
+  while(v <= max + step*0.001){ out.push(+v.toFixed(10)); v += step; }
+  return out;
+}
+const shortNum = v => Math.abs(v)>=1000 ? (v/1000)+'k' : String(v);
+const clip = (s,n) => s.length>n ? s.slice(0,n-1)+'…' : s;
+
+/* ---------- tooltip compartido ---------- */
+const tip = document.createElement('div');
+tip.id = 'tip';
+document.body.appendChild(tip);
+function bindTips(el){
+  if(!el || el.dataset.tipBound) return;
+  el.dataset.tipBound = '1';
+  el.addEventListener('mousemove', e => {
+    const t = e.target.closest('[data-tip]');
+    if(!t){ tip.classList.remove('on'); return; }
+    tip.innerHTML = t.dataset.tip;
+    tip.classList.add('on');
+    const pad = 14, w = tip.offsetWidth, h = tip.offsetHeight;
+    let x = e.clientX + pad, y = e.clientY + pad;
+    if(x + w > innerWidth - 8) x = e.clientX - w - pad;
+    if(y + h > innerHeight - 8) y = e.clientY - h - pad;
+    tip.style.transform = `translate(${x}px,${y}px)`;
+  });
+  el.addEventListener('mouseleave', () => tip.classList.remove('on'));
+}
+
+/* ---------- barras horizontales ---------- */
+function hBars(id, rows, opt={}){
+  const W = 720, rowH = opt.rowH || 22, padT = 10, padB = 30;
+  const L = opt.labelW || 210, R = 58;
+  const H = padT + rows.length*rowH + padB;
+  const max = Math.max(...rows.map(r=>r.v), 1);
+  const ticks = niceTicks(0, max, 4);
+  const sx = v => L + (v/ticks[ticks.length-1])*(W-L-R);
+  let s = '';
+  ticks.forEach(t => {
+    s += `<line x1="${sx(t)}" y1="${padT}" x2="${sx(t)}" y2="${padT+rows.length*rowH}" stroke="${GRID}"/>`;
+    s += `<text x="${sx(t)}" y="${padT+rows.length*rowH+16}" fill="${TXT}" text-anchor="middle">${shortNum(t)}</text>`;
+  });
+  rows.forEach((r,i) => {
+    const y = padT + i*rowH, bh = rowH-7;
+    s += `<text x="${L-8}" y="${y+bh-2}" fill="#161D22" text-anchor="end" font-family="'Public Sans',system-ui,sans-serif" font-size="11.5">${esc(clip(r.n,34))}</text>`;
+    s += `<rect data-tip="${esc(r.tip||r.n)}" x="${L}" y="${y}" width="${Math.max(1,sx(r.v)-L)}" height="${bh}" fill="${r.c}" opacity=".85"><title>${esc(r.n)}</title></rect>`;
+    s += `<text x="${sx(r.v)+6}" y="${y+bh-2}" fill="${TXT}">${r.lbl!=null?esc(r.lbl):shortNum(r.v)}</text>`;
+  });
+  bindTips(svgWrap(id, W, H, s));
+}
+
+/* ---------- barras verticales agrupadas o apiladas ---------- */
+function vBars(id, cats, series, opt={}){
+  const W = 720, H = opt.h || 300, padT = 14, padB = opt.legend ? 52 : 34, L = 52, R = 16;
+  const stack = !!opt.stack;
+  const tot = cats.map((_,i) => stack
+    ? series.reduce((a,s)=>a+(s.d[i]||0),0)
+    : Math.max(...series.map(s=>s.d[i]||0)));
+  const ticks = niceTicks(0, Math.max(...tot,1), 4);
+  const top = ticks[ticks.length-1];
+  const sy = v => H-padB - (v/top)*(H-padB-padT);
+  const bw = (W-L-R)/cats.length;
+  let s = '';
+  ticks.forEach(t => {
+    s += `<line x1="${L}" y1="${sy(t)}" x2="${W-R}" y2="${sy(t)}" stroke="${GRID}"/>`;
+    s += `<text x="${L-7}" y="${sy(t)+4}" fill="${TXT}" text-anchor="end">${shortNum(t)}</text>`;
+  });
+  cats.forEach((c,i) => {
+    const cx = L + bw*i + bw/2;
+    s += `<text x="${cx}" y="${H-padB+17}" fill="${TXT}" text-anchor="middle">${esc(clip(String(c),16))}</text>`;
+    if(stack){
+      let acc = 0;
+      series.forEach(se => {
+        const v = se.d[i]||0; if(!v) return;
+        const y0 = sy(acc+v), y1 = sy(acc);
+        s += `<rect data-tip="<b>${esc(se.n)}</b><br>${esc(c)} · ${opt.fmt?opt.fmt(v):v}" x="${cx-bw*.28}" y="${y0}" width="${bw*.56}" height="${Math.max(0,y1-y0)}" fill="${se.c}" opacity=".88"/>`;
+        acc += v;
+      });
+    } else {
+      const n = series.length, gw = bw*.62/n;
+      series.forEach((se,k) => {
+        const v = se.d[i]||0;
+        const x = cx - bw*.31 + gw*k;
+        s += `<rect data-tip="<b>${esc(se.n)}</b><br>${esc(c)} · ${opt.fmt?opt.fmt(v):v}" x="${x}" y="${sy(v)}" width="${gw*.9}" height="${Math.max(0,H-padB-sy(v))}" fill="${se.c}" opacity="${se.op??.88}"/>`;
+      });
+    }
+  });
+  s += `<line x1="${L}" y1="${H-padB}" x2="${W-R}" y2="${H-padB}" stroke="${AXC}"/>`;
+  if(opt.legend) s += legendRow(series, L, H-12);
+  bindTips(svgWrap(id, W, H, s));
+}
+function legendRow(series, x0, y){
+  let x = x0, s = '';
+  series.forEach(se => {
+    s += `<rect x="${x}" y="${y-8}" width="9" height="9" fill="${se.c}" opacity="${se.op??.88}"/>`;
+    s += `<text x="${x+13}" y="${y}" fill="${TXT}" font-family="'Public Sans',system-ui,sans-serif" font-size="11">${esc(se.n)}</text>`;
+    x += 22 + se.n.length*5.7;
+  });
+  return s;
+}
+
+/* ---------- líneas ---------- */
+function lines(id, cats, series, opt={}){
+  const W = 720, H = opt.h || 300, padT = 14, padB = 52, L = 54, R = 18;
+  const all = series.flatMap(s=>s.d).filter(v=>v!=null);
+  const ticks = niceTicks(0, Math.max(...all,1), 4);
+  const top = ticks[ticks.length-1];
+  const sx = i => L + (cats.length<2?0:(i/(cats.length-1))*(W-L-R));
+  const sy = v => H-padB - (v/top)*(H-padB-padT);
+  let s = '';
+  ticks.forEach(t => {
+    s += `<line x1="${L}" y1="${sy(t)}" x2="${W-R}" y2="${sy(t)}" stroke="${GRID}"/>`;
+    s += `<text x="${L-7}" y="${sy(t)+4}" fill="${TXT}" text-anchor="end">${shortNum(t)}</text>`;
+  });
+  cats.forEach((c,i) => s += `<text x="${sx(i)}" y="${H-padB+17}" fill="${TXT}" text-anchor="middle">${esc(c)}</text>`);
+  series.forEach(se => {
+    const pts = se.d.map((v,i)=>v==null?null:[sx(i),sy(v)]).filter(Boolean);
+    if(pts.length>1) s += `<polyline points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="${se.c}" stroke-width="2.4" stroke-linejoin="round"/>`;
+    se.d.forEach((v,i) => { if(v==null) return;
+      s += `<circle data-tip="<b>${esc(se.n)}</b><br>${esc(cats[i])} · ${opt.fmt?opt.fmt(v):v}" cx="${sx(i)}" cy="${sy(v)}" r="4.5" fill="${se.c}" stroke="#FBFBF8" stroke-width="1.5"/>`;
+    });
+  });
+  s += `<line x1="${L}" y1="${H-padB}" x2="${W-R}" y2="${H-padB}" stroke="${AXC}"/>`;
+  s += legendRow(series, L, H-14);
+  bindTips(svgWrap(id, W, H, s));
+}
+
+/* ---------- área apilada ---------- */
+function stackArea(id, cats, series, opt={}){
+  const W = 720, H = opt.h || 300, padT = 14, padB = 52, L = 54, R = 18;
+  const tot = cats.map((_,i)=>series.reduce((a,s)=>a+(s.d[i]||0),0));
+  const ticks = niceTicks(0, Math.max(...tot,1), 4);
+  const top = ticks[ticks.length-1];
+  const sx = i => L + (i/(cats.length-1))*(W-L-R);
+  const sy = v => H-padB - (v/top)*(H-padB-padT);
+  let s = '';
+  ticks.forEach(t => {
+    s += `<line x1="${L}" y1="${sy(t)}" x2="${W-R}" y2="${sy(t)}" stroke="${GRID}"/>`;
+    s += `<text x="${L-7}" y="${sy(t)+4}" fill="${TXT}" text-anchor="end">${shortNum(t)}</text>`;
+  });
+  const acc = cats.map(()=>0);
+  series.forEach(se => {
+    const lo = acc.slice();
+    se.d.forEach((v,i)=>acc[i]+=(v||0));
+    const up = cats.map((_,i)=>`${sx(i)},${sy(acc[i])}`).join(' ');
+    const dn = cats.map((_,i)=>`${sx(i)},${sy(lo[i])}`).reverse().join(' ');
+    s += `<polygon data-tip="<b>${esc(se.n)}</b>" points="${up} ${dn}" fill="${se.c}" opacity=".9"/>`;
+  });
+  cats.forEach((c,i) => s += `<text x="${sx(i)}" y="${H-padB+17}" fill="${TXT}" text-anchor="middle">${esc(c)}</text>`);
+  cats.forEach((c,i) => s += `<rect data-tip="<b>${esc(c)}</b><br>Total ${Math.round(tot[i])} kt/año" x="${sx(i)-14}" y="${padT}" width="28" height="${H-padB-padT}" fill="transparent"/>`);
+  s += `<line x1="${L}" y1="${H-padB}" x2="${W-R}" y2="${H-padB}" stroke="${AXC}"/>`;
+  s += legendRow(series, L, H-14);
+  bindTips(svgWrap(id, W, H, s));
+}
+
+/* ---------- scatter con burbujas ---------- */
+function bubbles(id, pts, opt={}){
+  const W = 720, H = opt.h || 300, padT = 16, padB = 40, L = 56, R = 20;
+  const log = !!opt.log;
+  const xs = pts.map(p=>p.x), ys = pts.map(p=>p.y);
+  const f = v => log ? Math.log10(Math.max(v,1)) : v;
+  const x0 = opt.xMin!=null?f(opt.xMin):Math.min(...xs.map(f)), x1 = opt.xMax!=null?f(opt.xMax):Math.max(...xs.map(f));
+  const y0 = opt.yMin!=null?f(opt.yMin):Math.min(...ys.map(f)), y1 = opt.yMax!=null?f(opt.yMax):Math.max(...ys.map(f));
+  const sx = v => L + ((f(v)-x0)/((x1-x0)||1))*(W-L-R);
+  const sy = v => H-padB - ((f(v)-y0)/((y1-y0)||1))*(H-padB-padT);
+  let s = '';
+  const xt = log ? [] : niceTicks(x0, x1, 5);
+  if(log){ for(let e=Math.floor(x0); e<=Math.ceil(x1); e++) xt.push(Math.pow(10,e)); }
+  xt.forEach(t => {
+    if(f(t)<x0-.01 || f(t)>x1+.01) return;
+    s += `<line x1="${sx(t)}" y1="${padT}" x2="${sx(t)}" y2="${H-padB}" stroke="${GRID}"/>`;
+    s += `<text x="${sx(t)}" y="${H-padB+17}" fill="${TXT}" text-anchor="middle">${shortNum(t)}</text>`;
+  });
+  const yt = log ? [] : niceTicks(y0, y1, 4);
+  if(log){ for(let e=Math.floor(y0); e<=Math.ceil(y1); e++) yt.push(Math.pow(10,e)); }
+  yt.forEach(t => {
+    if(f(t)<y0-.01 || f(t)>y1+.01) return;
+    s += `<line x1="${L}" y1="${sy(t)}" x2="${W-R}" y2="${sy(t)}" stroke="${GRID}"/>`;
+    s += `<text x="${L-7}" y="${sy(t)+4}" fill="${TXT}" text-anchor="end">${shortNum(t)}</text>`;
+  });
+  pts.forEach(p => {
+    s += `<circle data-tip="${esc(p.tip)}" data-id="${esc(p.id||'')}" cx="${sx(p.x)}" cy="${sy(p.y)}" r="${p.r}" fill="${p.c}" opacity=".6" stroke="#FBFBF8" stroke-width=".9" style="cursor:pointer"/>`;
+  });
+  if(opt.xLabel) s += `<text x="${(L+W-R)/2}" y="${H-6}" fill="${TXT}" text-anchor="middle">${esc(opt.xLabel)}</text>`;
+  if(opt.yLabel) s += `<text x="12" y="${(padT+H-padB)/2}" fill="${TXT}" text-anchor="middle" transform="rotate(-90 12 ${(padT+H-padB)/2})">${esc(opt.yLabel)}</text>`;
+  const el = svgWrap(id, W, H, s);
+  bindTips(el);
+  if(el && opt.onPick) el.addEventListener('click', e => {
+    const t = e.target.closest('[data-id]');
+    if(t && t.dataset.id) opt.onPick(t.dataset.id);
+  });
+}
+
+/* ---------- treemap (squarified simplificado) ---------- */
+function treemap(id, items, opt={}){
+  const W = 720, H = opt.h || 380;
+  const total = items.reduce((a,i)=>a+i.v,0) || 1;
+  const data = [...items].sort((a,b)=>b.v-a.v);
+  const out = [];
+  (function slice(list, x, y, w, h, horiz){
+    if(!list.length) return;
+    if(list.length===1){ out.push({...list[0], x, y, w, h}); return; }
+    const sum = list.reduce((a,i)=>a+i.v,0);
+    let acc = 0, k = 0;
+    while(k < list.length-1 && acc + list[k].v < sum/2){ acc += list[k].v; k++; }
+    k = Math.max(1, Math.min(k, list.length-1));   // toda partición debe avanzar
+    const a = list.slice(0,k), b = list.slice(k);
+    const fa = Math.min(.92, Math.max(.08, a.reduce((s,i)=>s+i.v,0)/sum));
+    if(horiz){ slice(a,x,y,w*fa,h,!horiz); slice(b,x+w*fa,y,w*(1-fa),h,!horiz); }
+    else { slice(a,x,y,w,h*fa,!horiz); slice(b,x,y+h*fa,w,h*(1-fa),!horiz); }
+  })(data, 0, 0, W, H, true);
+  let s = '';
+  out.forEach(o => {
+    const pct = (o.v/total*100).toFixed(1);
+    s += `<rect data-tip="<b>${esc(o.n)}</b><br>${opt.fmt?opt.fmt(o.v):o.v} · ${pct}%" x="${o.x+1}" y="${o.y+1}" width="${Math.max(0,o.w-2)}" height="${Math.max(0,o.h-2)}" fill="${o.c}"/>`;
+    if(o.w > 74 && o.h > 34){
+      s += `<text x="${o.x+9}" y="${o.y+21}" fill="#fff" font-family="'Archivo',system-ui,sans-serif" font-size="13" font-weight="600">${esc(clip(o.n,Math.floor(o.w/8)))}</text>`;
+      s += `<text x="${o.x+9}" y="${o.y+36}" fill="rgba(255,255,255,.82)" font-size="10.5">${opt.fmt?opt.fmt(o.v):o.v}</text>`;
+    }
+  });
+  bindTips(svgWrap(id, W, H, s));
+}
+
+/* ---------- mapa esquemático de Argentina ---------- */
+const AR_MAIN = [[-22.0,-66.3],[-22.0,-62.8],[-22.2,-62.0],[-24.0,-61.0],[-25.5,-58.0],[-27.3,-58.6],
+[-25.6,-54.6],[-26.4,-53.6],[-27.5,-55.0],[-30.2,-57.6],[-34.0,-58.4],[-35.0,-57.3],[-37.5,-57.0],
+[-38.9,-62.1],[-40.8,-62.9],[-41.0,-65.0],[-42.8,-64.4],[-43.4,-65.3],[-45.8,-67.4],[-47.8,-65.9],
+[-50.3,-68.5],[-52.3,-68.5],[-52.3,-69.5],[-51.0,-72.3],[-50.0,-73.5],[-48.5,-73.5],[-46.5,-71.8],
+[-44.0,-71.6],[-42.0,-71.8],[-40.0,-71.5],[-38.0,-70.9],[-36.0,-69.9],[-34.5,-69.9],[-33.0,-70.2],
+[-31.5,-70.4],[-30.0,-69.9],[-28.0,-69.3],[-27.0,-68.8],[-26.0,-68.5],[-24.5,-68.4],[-23.0,-67.2]];
+const AR_TDF = [[-52.6,-68.6],[-52.7,-68.3],[-53.5,-67.9],[-54.0,-66.5],[-54.8,-65.2],[-54.9,-67.2],[-54.7,-68.6]];
+
+const MAPBOX = {latMax:-20.5, latMin:-56.0, lngMin:-74.5, lngMax:-52.5, W:520, H:760};
+function proj(lat, lng){
+  const B = MAPBOX, k = Math.cos(-38*Math.PI/180);
+  const x = ((lng-B.lngMin)/(B.lngMax-B.lngMin))*B.W*k + (B.W*(1-k))/2;
+  const y = ((lat-B.latMax)/(B.latMin-B.latMax))*B.H;
+  return [x,y];
+}
+function drawSvgMap(id, list, sectorColor, radiusFor, estadoDe, capexTxt, onPick){
+  const B = MAPBOX;
+  const path = pts => pts.map((p,i)=>{ const [x,y]=proj(p[0],p[1]); return (i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1); }).join(' ')+' Z';
+  let s = `<rect width="${B.W}" height="${B.H}" fill="#DFE3DA"/>`;
+  for(let lat=-25; lat>=-55; lat-=5){
+    const [,y] = proj(lat,-60);
+    s += `<line x1="0" y1="${y}" x2="${B.W}" y2="${y}" stroke="#D2D7CB"/>`;
+    s += `<text x="5" y="${y-4}" fill="#9AA29A" font-size="9">${Math.abs(lat)}°S</text>`;
+  }
+  s += `<path d="${path(AR_MAIN)}" fill="#F2F4EE" stroke="#A9B0A6" stroke-width="1.1"/>`;
+  s += `<path d="${path(AR_TDF)}" fill="#F2F4EE" stroke="#A9B0A6" stroke-width="1.1"/>`;
+  const sorted = [...list].sort((a,b)=>radiusFor(b)-radiusFor(a));
+  sorted.forEach(p => {
+    const [x,y] = proj(p.lat,p.lng);
+    const c = sectorColor(p.s), blocked = p.rigi==='Bloqueado';
+    s += `<circle data-id="${esc(p.id)}" style="cursor:pointer"
+      data-tip="<b>${esc(p.n)}</b><br>${esc(p.prov)} · ${esc(estadoDe(p))}<br>${esc(capexTxt(p))}<br><span style='opacity:.7'>${esc(p.op)}</span>"
+      cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${radiusFor(p).toFixed(1)}"
+      fill="${c}" fill-opacity="${blocked?.1:.48}" stroke="${c}" stroke-width="1.4"
+      ${blocked?'stroke-dasharray="3 3"':''}/>`;
+  });
+  const el = svgWrap(id, B.W, B.H, s);
+  bindTips(el);
+  if(el && onPick) el.addEventListener('click', e => {
+    const t = e.target.closest('[data-id]');
+    if(t && t.dataset.id) onPick(t.dataset.id);
+  });
+}
+
+
+/* ---- cadena de valor: solo adjudicaciones con fuente pública ----
+   rol: EPC · EPCM · Obra · Equipamiento · Marítimo · Financiamiento · Offtake */
+const CADENA = {
+ vmos:[
+  {r:'EPC', n:'Techint Ingeniería y Construcción + SACDE (UT)', d:'Ducto troncal de 437 km y 30 pulgadas entre Allen y Punta Colorada, más el montaje electromecánico de la terminal. Construcción y precomisionado cerrados en 15 meses, con más de 2.500 trabajadores en el pico y 76 cruces especiales. Récord de 175 soldaduras automáticas en un día.'},
+  {r:'Obra', n:'Milicic + CB&I', d:'Playa de seis tanques de 120.000 m³, 82 metros de diámetro y techo geodésico de aluminio. Milicic fue distinguida dos meses seguidos como mejor contratista en seguridad y medio ambiente de la terminal.'},
+  {r:'Marítimo', n:'DOF Group (Noruega)', d:'Instalación y precomisionamiento de las dos monoboyas CALM, por un contrato de entre USD 25 y 50 millones, con los buques Skandi Hera y Skandi Patagonia.'},
+  {r:'Obra', n:'SPI Astilleros', d:'Pruebas hidrostáticas de integridad de los seis tanques, con la draga Gloria P.'},
+  {r:'Obra', n:'Coripa', d:'Impermeabilización interior de los tanques de almacenamiento.'},
+  {r:'Financiamiento', n:'Préstamo sindicado internacional', d:'USD 2.000 millones para el consorcio VMOS S.A.'}
+ ],
+ vicuna:[
+  {r:'EPCM', n:'Fluor', d:'Ingeniería, adquisición y gestión de construcción del proyecto.'},
+  {r:'EPC', n:'PowerChina + Beijing Chengdong + RAFA S.A.', d:'Segunda etapa del campamento Batidero por USD 52 millones: 2.000 a 2.500 camas. PowerChina toma la gestión integral, Beijing Chengdong fabrica los módulos y la santafesina RAFA ejecuta en terreno. La oferta competidora de Modular Homes era de USD 70 millones, brecha que abrió un debate sobre la competitividad de la cadena proveedora argentina bajo el RIGI.'},
+  {r:'Obra', n:'Zlato', d:'Mantenimiento de los 170 km de camino entre Angualasto y La Majadita, departamento Iglesia.'},
+  {r:'Obra', n:'Licitaciones abiertas', d:'Tres campamentos para el personal del Corredor Norte y dos licitaciones eléctricas que convocaron a más de 500 empresas en San Juan. Más del 95% del plantel es argentino y cerca del 73% sanjuanino.'}
+ ],
+ azules:[
+  {r:'Financiamiento', n:'IFC (Banco Mundial)', d:'Acuerdo de colaboración para liderar la estructuración de la deuda.'},
+  {r:'Equipamiento', n:'Komatsu · Sandvik · YPF Luz · ECAs europeas', d:'Propuestas de financiamiento de equipamiento y energía por más de USD 1.100 millones. Todavía no son adjudicaciones cerradas.'}
+ ],
+ tacataca:[
+  {r:'Financiamiento', n:'IFC (Banco Mundial)', d:'Acuerdo para la aplicación de estándares ambientales y sociales. Sin contratistas de obra adjudicados: el proyecto no tomó decisión final de inversión.'}
+ ],
+ duplicarnorte:[
+  {r:'EPC', n:'Techint Ingeniería y Construcción', d:'207 a 209 km de cañería de 24 pulgadas entre Auca Mahuida y Allen.'}
+ ],
+ peritomoreno:[
+  {r:'EPC', n:'Techint + SACDE (antecedente)', d:'La misma unión transitoria ejecutó el gasoducto original, uno de los cuatro proyectos que ambas compañías desarrollaron en conjunto. La ampliación es responsabilidad de TGS.'}
+ ],
+ gasnorte:[
+  {r:'Financiamiento', n:'CAF', d:'Crédito de USD 540 millones sobre una inversión total de USD 740 millones, completada con fondos públicos.'}
+ ],
+ arglng:[
+  {r:'Financiamiento', n:'JP Morgan', d:'Estructuración del project finance, con un préstamo mencionado en torno a USD 16.000 millones. Los bancos contactaron a más de 200 instituciones.'},
+  {r:'Equipamiento', n:'Unidades flotantes de licuefacción', d:'Dos FLNG de 6 Mtpa cada una, todavía sin astillero adjudicado públicamente. La disponibilidad de turbinas de licuefacción es uno de los riesgos de cadena de suministro del proyecto.'}
+ ],
+ southern:[
+  {r:'Equipamiento', n:'Golar LNG (Noruega)', d:'Aporta los buques de licuefacción Hilli Episeyo, operativo desde noviembre de 2027, y el MK II a fines de 2028.'},
+  {r:'Offtake', n:'SEFE (Alemania)', d:'Contrato por más de USD 7.000 millones: 2 Mtpa durante ocho años, cerca del 80% de la capacidad del primer buque.'}
+ ],
+ rincon:[
+  {r:'Financiamiento', n:'IFC (Banco Mundial)', d:'Participa en el financiamiento de la fase mayor, estimada en unos USD 2.500 millones.'},
+  {r:'Obra', n:'Portal de proveedores propio', d:'Rio Tinto canaliza la contratación por un portal de proveedores con foco local y un centro de entrenamiento en Salta, sin publicar adjudicaciones individuales.'}
+ ],
+ mara:[
+  {r:'Equipamiento', n:'Infraestructura preexistente de Alumbrera', d:'La reactivación del brownfield reduce la necesidad de obra nueva y reutiliza planta, mineroducto y fuerza laboral ya entrenada. Sin contratistas de obra adjudicados públicamente.'}
+ ]
+};
+const ROL_COLOR = {EPC:'#1F5673', EPCM:'#2E7D6E', Obra:'#A85A32', Equipamiento:'#9A7B22', 'Marítimo':'#3E8CA0', Financiamiento:'#6E7377', Offtake:'#8C2F2F'};
+
+/* ============================================================
+   ESTADO Y UTILIDADES
+   ============================================================ */
+const fmt = n => n==null ? 's/d' : n.toLocaleString('es-AR');
+const usd = n => n==null ? 's/d' : 'USD ' + n.toLocaleString('es-AR') + ' M';
+const capexMid = p => p.capex!=null ? p.capex : (p.capexMin!=null && p.capexMax!=null ? (p.capexMin+p.capexMax)/2 : null);
+const capexTxt = p => {
+  if(p.capexMin!=null && p.capexMax!=null && p.capexMin!==p.capexMax) return `USD ${fmt(p.capexMin)}–${fmt(p.capexMax)} M`;
+  return usd(p.capex);
+};
+const estadoDe = p => {
+  if(p.rigi==='Bloqueado') return 'Bloqueado';
+  if(p.etapa===6) return 'Producción';
+  if(p.etapa===5) return 'Construcción';
+  if(p.etapa===4) return 'Pre-construcción';
+  if(p.etapa===3) return 'Factibilidad';
+  return 'Exploración';
+};
+const ESTADOS = ['Producción','Construcción','Pre-construcción','Factibilidad','Exploración','Bloqueado'];
+const CONF_LBL = {dato:'dato', empresa:'empresa', estimacion:'estimación'};
+const sectorColor = s => SECTORES[s].c;
+const radiusFor = p => { const c = capexMid(p); return c ? Math.max(4, Math.min(22, Math.sqrt(c)/9.5)) : 4; };
+
+let state = {sectores:new Set(Object.keys(SECTORES)), estados:new Set(ESTADOS), q:''};
+const filtered = () => P.filter(p =>
+  state.sectores.has(p.s) && state.estados.has(estadoDe(p)) &&
+  (state.q==='' || (p.n+' '+p.op+' '+p.prov).toLowerCase().includes(state.q))
+);
+
+/* ---------- KPIs ---------- */
+const totalCapex = P.reduce((a,p)=>a+(capexMid(p)||0),0);
+document.getElementById('stampN').textContent = P.length;
+document.getElementById('stampCapex').textContent = 'USD ' + Math.round(totalCapex/1000) + ' mil M';
+
+const KPI = [
+ {v:'914.900', l:'barriles diarios de petróleo, récord nacional', d:'Junio 2026 · +17,1% interanual'},
+ {v:'20', l:'proyectos RIGI aprobados por unos USD 57.000 millones', d:'Julio 2026'},
+ {v:'USD 110.883 M', l:'en 25 proyectos RIGI todavía en evaluación', d:'Argentina LNG explica casi la mitad'},
+ {v:'0 t', l:'de cobre producidas desde el cierre de Alumbrera en 2018', d:'La primera mina nueva arranca en 2028'},
+ {v:'USD 51.000 M', l:'de exportaciones netas de energía y minería proyectadas a 2030', d:'BCRA · contra USD 13.000 M en 2025'}
+];
+document.getElementById('kpis').innerHTML = KPI.map(k =>
+  `<div class="kpi"><div class="v mono">${k.v}</div><div class="l">${k.l}</div><div class="d">${k.d}</div></div>`).join('');
+
+/* ---------- filtros ---------- */
+document.getElementById('fSector').innerHTML = Object.entries(SECTORES).map(([k,v])=>
+  `<button class="chip" data-t="s" data-k="${k}" aria-pressed="true"><span class="dot" style="background:${v.c}"></span>${v.n}</button>`).join('');
+document.getElementById('fEstado').innerHTML = ESTADOS.map(e=>
+  `<button class="chip" data-t="e" data-k="${e}" aria-pressed="true">${e}</button>`).join('');
+document.querySelectorAll('.chip[data-t]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const set = b.dataset.t==='s' ? state.sectores : state.estados;
+    const k = b.dataset.k;
+    if(set.has(k)){ set.delete(k); b.setAttribute('aria-pressed','false'); }
+    else { set.add(k); b.setAttribute('aria-pressed','true'); }
+    render();
+  });
+});
+document.getElementById('fSearch').addEventListener('input',e=>{ state.q = e.target.value.toLowerCase().trim(); render(); });
+document.getElementById('fReset').addEventListener('click',()=>{
+  state.sectores = new Set(Object.keys(SECTORES)); state.estados = new Set(ESTADOS); state.q='';
+  document.getElementById('fSearch').value='';
+  document.querySelectorAll('.chip[data-t]').forEach(b=>b.setAttribute('aria-pressed','true'));
+  render();
+});
+document.getElementById('legend').innerHTML = Object.values(SECTORES).map(v=>
+  `<span><i style="background:${v.c}"></i>${v.n}</span>`).join('');
+
+/* ---------- mapa ---------- */
+function drawMapList(list){
+  document.getElementById('mapList').innerHTML = list.length ? list.map(p=>`
+    <div class="mapitem" data-id="${p.id}">
+      <span class="bar" style="background:${SECTORES[p.s].c}"></span>
+      <span>
+        <div class="n">${p.n}</div>
+        <div class="m">${p.prov} · ${estadoDe(p)} · ${capexTxt(p)}</div>
+      </span>
+    </div>`).join('')
+    : '<div style="padding:30px 18px;color:var(--ink2);font-size:13.5px">Ningún proyecto coincide con los filtros. Ajustá los sectores o limpiá la búsqueda.</div>';
+  document.querySelectorAll('.mapitem').forEach(el=>{
+    el.addEventListener('click',()=>openDrawer(el.dataset.id));
+  });
+}
+
+/* ---------- hero ---------- */
+function drawHero(){
+  const jitter = s => { let h=0; for(const c of s) h=(h*31+c.charCodeAt(0))%997; return .16 + (h/997)*.68; };
+  const conAño = P.filter(p=>p.ini);
+  const pts = conAño.map(p=>({
+    x:p.ini, y:jitter(p.id), r:Math.max(4,Math.min(30,Math.sqrt(capexMid(p)||60)/3.6)),
+    c:SECTORES[p.s].c, id:p.id,
+    tip:`<b>${p.n}</b><br>${estadoDe(p)} · arranque ${p.ini}<br>${capexTxt(p)}<br><span style="opacity:.7">${p.op}</span>`
+  }));
+  bubbles('heroChart', pts, {h:290, xMin:1995, xMax:2036, yMin:0, yMax:1, onPick:openDrawer});
+}
+
+/* ---------- gráficos ---------- */
+function drawCapex(list, tgt='chCapex', big){
+  const d = list.filter(p=>capexMid(p)).sort((a,b)=>capexMid(b)-capexMid(a)).slice(0, big?32:18);
+  hBars(tgt, d.map(p=>({
+    n:p.n, v:capexMid(p), c:SECTORES[p.s].c, lbl:fmt(Math.round(capexMid(p))),
+    tip:`<b>${p.n}</b><br>${capexTxt(p)}<br><span style="opacity:.7">${p.op}</span>`
+  })), {rowH:big?26:22});
+}
+function drawOrigen(tgt='chOrigen', big){
+  const acc = {};
+  P.forEach(p=>{
+    const c = capexMid(p); if(!c || !p.pais || p.pais==='s/d') return;
+    const paises = p.pais.split(' / ');
+    paises.forEach(x=>{ acc[x] = (acc[x]||0) + c/paises.length; });
+  });
+  const pal = ['#1F5673','#A85A32','#2E7D6E','#9A7B22','#3E8CA0','#6E7377','#8C2F2F','#4A6B7C','#B08A5A','#54706B','#7A4726','#3F5A63'];
+  const items = Object.entries(acc).map(([n,v],i)=>({n, v:Math.round(v), c:pal[i%pal.length]})).sort((a,b)=>b.v-a.v);
+  items.forEach((o,i)=>o.c = pal[i%pal.length]);
+  treemap(tgt, items, {h:big?560:380, fmt:v=>'USD '+fmt(v)+' M'});
+}
+function drawRigi(tgt='chRigi', big){
+  const g = {Aprobado:{}, 'En evaluación':{}};
+  P.forEach(p=>{ if(!g[p.rigi]) return; g[p.rigi][p.s] = (g[p.rigi][p.s]||0) + (capexMid(p)||0); });
+  const cats = ['Aprobado','En evaluación'];
+  const series = Object.keys(SECTORES).map(s=>({n:SECTORES[s].n, c:SECTORES[s].c, d:cats.map(k=>g[k][s]||0)}));
+  vBars(tgt, cats, series.filter(s=>s.d.some(v=>v>0)), {h:big?520:300, stack:true, legend:true, fmt:v=>'USD '+fmt(Math.round(v))+' M'});
+}
+function drawScatter(list, tgt='chScatter', big){
+  const pts = list.filter(p=>capexMid(p) && p.empO).map(p=>({
+    x:capexMid(p), y:p.empO, r:Math.max(5,Math.min(24,Math.sqrt(p.empC||400)/3.2)),
+    c:SECTORES[p.s].c, id:p.id,
+    tip:`<b>${p.n}</b><br>CAPEX USD ${fmt(Math.round(capexMid(p)))} M<br>Empleo en operación ${fmt(p.empO)}`
+  }));
+  bubbles(tgt, pts, {h:big?520:300, log:true, xLabel:'CAPEX · USD M (log)', yLabel:'Empleo en operación (log)', onPick:openDrawer});
+}
+function drawPetroleo(tgt='chPetroleo', big){
+  hBars(tgt, PETROLEO.map(x=>({
+    n:x.n, v:x.v, c:x.n.startsWith('Resto')?'#8B949A':'#1F5673', lbl:String(x.v),
+    tip:`<b>${x.n}</b><br>${x.v} mil bbl/d`
+  })), {rowH:big?44:30, labelW:190});
+}
+function drawCobre(tgt='chCobre', big){
+  const pal = ['#7A4726','#8E5230','#A85A32','#BC7148','#C98A5E','#D6A279','#E2B995'];
+  stackArea(tgt, COBRE_CURVA.años,
+    COBRE_CURVA.series.map((s,i)=>({n:s.n, d:s.d, c:pal[i%pal.length]})), {h:big?520:320});
+}
+function drawLitio(tgt='chLitio', big){
+  const d = [...LITIO_CAP].sort((a,b)=>b.meta-a.meta);
+  vBars(tgt, d.map(x=>clip(x.n, big?22:13)), [
+    {n:'Capacidad hoy', c:'#3E8CA0', d:d.map(x=>x.hoy)},
+    {n:'Meta declarada', c:'#3E8CA0', op:.3, d:d.map(x=>x.meta)}
+  ], {h:big?520:320, legend:true, fmt:v=>fmt(v)+' t/a'});
+}
+function drawExpo(tgt='chExpo', big){
+  lines(tgt, EXPO.años, EXPO.series.map(s=>({n:s.n, d:s.d, c:s.c})),
+    {h:big?520:320, fmt:v=>'USD '+v+' mil M'});
+}
+
+/* ---------- tabla ---------- */
+const COLS = [
+ {k:'n', t:'Proyecto', f:p=>`<b>${p.n}</b>`},
+ {k:'s', t:'Sector', f:p=>`<span class="sector-pill"><i style="background:${SECTORES[p.s].c}"></i>${SECTORES[p.s].n}</span>`},
+ {k:'prov', t:'Provincia'},
+ {k:'op', t:'Operador', f:p=>`<span style="font-size:12.5px;color:var(--ink2)">${p.op}</span>`},
+ {k:'_capex', t:'CAPEX USD M', n:true, v:p=>capexMid(p), f:p=>`<span class="num">${capexMid(p)?fmt(Math.round(capexMid(p))):'s/d'}</span>`},
+ {k:'_estado', t:'Estado', v:p=>estadoDe(p), f:p=>estadoDe(p)},
+ {k:'ini', t:'Arranque', n:true, f:p=>`<span class="num">${p.ini||'s/d'}</span>`},
+ {k:'prod', t:'Producción', f:p=>`<span style="font-size:12.5px">${p.prod||'s/d'}</span>`},
+ {k:'empO', t:'Empleo op.', n:true, f:p=>`<span class="num">${fmt(p.empO)}</span>`},
+ {k:'rigi', t:'RIGI'},
+ {k:'conf', t:'Dato', f:p=>`<span class="conf ${p.conf==='estimacion'?'est':p.conf==='empresa'?'emp':'dato'}">${CONF_LBL[p.conf]}</span>`}
+];
+let sortK='_capex', sortDir=-1;
+function drawTable(list){
+  document.getElementById('thead').innerHTML = COLS.map(c=>
+    `<th data-k="${c.k}" tabindex="0" ${sortK===c.k?`aria-sort="${sortDir<0?'descending':'ascending'}"`:''}>${c.t} <span class="ar">${sortK===c.k?(sortDir<0?'▼':'▲'):'⇅'}</span></th>`).join('');
+  const col = COLS.find(c=>c.k===sortK);
+  const val = p => col.v ? col.v(p) : p[col.k];
+  const sorted = [...list].sort((a,b)=>{
+    let x=val(a), y=val(b);
+    if(x==null) return 1; if(y==null) return -1;
+    if(col.n) return (x-y)*sortDir;
+    return String(x).localeCompare(String(y),'es')*sortDir;
+  });
+  document.getElementById('tbody').innerHTML = sorted.length ? sorted.map(p=>
+    `<tr data-id="${p.id}">${COLS.map(c=>`<td>${c.f?c.f(p):(p[c.k]??'s/d')}</td>`).join('')}</tr>`).join('')
+    : `<tr><td colspan="${COLS.length}" style="padding:28px;color:var(--ink2)">Ningún proyecto coincide con los filtros.</td></tr>`;
+  document.querySelectorAll('#tbody tr[data-id]').forEach(tr=>tr.addEventListener('click',()=>openDrawer(tr.dataset.id)));
+  document.querySelectorAll('#thead th').forEach(th=>{
+    const go = ()=>{ const k=th.dataset.k; if(sortK===k) sortDir*=-1; else {sortK=k; sortDir=-1;} render(); };
+    th.addEventListener('click',go);
+    th.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();go();} });
+  });
+}
+document.getElementById('csvBtn').addEventListener('click',()=>{
+  const head = ['Proyecto','Sector','Provincia','Operador','Origen capital','CAPEX min USD M','CAPEX max USD M','CAPEX punto medio','Estado','Etapa','Año arranque','Producción','Empleo construcción','Empleo operación','RIGI','Fecha RIGI','Confiabilidad','Fuente'];
+  const q = v => `"${String(v==null?'':v).replace(/"/g,'""')}"`;
+  const rows = filtered().map(p=>[p.n,SECTORES[p.s].n,p.prov,p.op,p.pais,
+    p.capexMin??p.capex,p.capexMax??p.capex,capexMid(p),estadoDe(p),ETAPAS[p.etapa-1],p.ini,p.prod,
+    p.empC,p.empO,p.rigi,p.rigiFecha,CONF_LBL[p.conf],p.fuente].map(q).join(','));
+  const blob = new Blob(['\ufeff'+[head.map(q).join(','),...rows].join('\n')],{type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'cartera-mineria-energia-ar.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 1000);
+});
+
+/* ---------- drawer ---------- */
+function matBar(etapa, color){
+  return `<div class="mat" style="--stage:${color}">${ETAPAS.map((_,i)=>
+    `<i class="${i<etapa?'on':''}"></i>`).join('')}</div>
+    <div class="matlabels"><span>${ETAPAS[0]}</span><span>${ETAPAS[5]}</span></div>`;
+}
+function openDrawer(id){
+  const p = P.find(x=>x.id===id); if(!p) return;
+  document.getElementById('dEyebrow').innerHTML = `<span style="color:${SECTORES[p.s].c}">■</span>&nbsp;${SECTORES[p.s].n} · ${p.prov}`;
+  document.getElementById('dTitle').textContent = p.n;
+  document.getElementById('dBody').innerHTML = `
+    <div style="margin-bottom:22px">
+      <p class="eyebrow" style="margin-bottom:6px">Madurez · ${ETAPAS[p.etapa-1]}</p>
+      ${matBar(p.etapa, SECTORES[p.s].c)}
+    </div>
+    <dl class="dl">
+      <dt>Operador</dt><dd>${p.op}</dd>
+      <dt>Origen capital</dt><dd>${p.pais}</dd>
+      <dt>Inversión</dt><dd><b class="mono">${capexTxt(p)}</b></dd>
+      <dt>Estado</dt><dd>${estadoDe(p)}</dd>
+      <dt>Arranque</dt><dd class="mono">${p.ini||'s/d'}</dd>
+      <dt>Producción</dt><dd>${p.prod||'s/d'}</dd>
+      <dt>Empleo constr.</dt><dd class="mono">${fmt(p.empC)}</dd>
+      <dt>Empleo operac.</dt><dd class="mono">${fmt(p.empO)}</dd>
+      <dt>RIGI</dt><dd>${p.rigi}${p.rigiFecha?` <span class="mono" style="color:var(--ink3)">· ${p.rigiFecha}</span>`:''}</dd>
+      <dt>Confiabilidad</dt><dd><span class="conf ${p.conf==='estimacion'?'est':p.conf==='empresa'?'emp':'dato'}">${CONF_LBL[p.conf]}</span></dd>
+    </dl>
+    <p class="dnote">${p.nota}</p>
+    ${CADENA[p.id] ? `<p class="eyebrow" style="margin-bottom:8px">Cadena de valor</p>` +
+      CADENA[p.id].map(c=>`<div class="cadrow"><span class="rol" style="background:${ROL_COLOR[c.r]||'#5A646C'}">${c.r}</span><span class="who"><b>${c.n}</b><br><span>${c.d}</span></span></div>`).join('') +
+      `<div style="height:20px"></div>`
+      : `<p style="font-size:12.5px;color:var(--ink3);margin:0 0 20px" class="mono">Sin contratistas adjudicados de conocimiento público.</p>`}
+    <p class="eyebrow" style="margin-bottom:6px">Fuente</p>
+    <p style="font-size:12.5px;color:var(--ink2);margin:0" class="mono">${p.fuente}</p>`;
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('scrim').classList.add('open');
+  document.getElementById('dClose').focus();
+}
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('scrim').classList.remove('open');
+}
+document.getElementById('dClose').addEventListener('click',closeDrawer);
+document.getElementById('scrim').addEventListener('click',closeDrawer);
+document.addEventListener('keydown',e=>{ if(e.key!=='Escape') return; if(modalOpen) closeModal(); else closeDrawer(); });
+
+/* ---------- comparador ---------- */
+const CMP_ROWS = [
+ {l:'Sector', f:p=>`<span class="sector-pill"><i style="background:${SECTORES[p.s].c}"></i>${SECTORES[p.s].n}</span>`},
+ {l:'Provincia', f:p=>p.prov},
+ {l:'Operador', f:p=>p.op},
+ {l:'Origen', f:p=>p.pais},
+ {l:'Inversión', f:p=>`<b class="mono">${capexTxt(p)}</b>`},
+ {l:'Estado', f:p=>estadoDe(p)},
+ {l:'Arranque', f:p=>`<span class="mono">${p.ini||'s/d'}</span>`},
+ {l:'Producción', f:p=>p.prod||'s/d'},
+ {l:'Empleo op.', f:p=>`<span class="mono">${fmt(p.empO)}</span>`},
+ {l:'RIGI', f:p=>p.rigi},
+ {l:'Madurez', f:p=>matBar(p.etapa, SECTORES[p.s].c)}
+];
+const cmpSel = [0,1,2].map(i=>document.getElementById('cmp'+i));
+const cmpDefaults = ['vicuna','arglng','azules'];
+cmpSel.forEach((sel,i)=>{
+  sel.innerHTML = '<option value="">— vacío —</option>' + P.map(p=>`<option value="${p.id}">${p.n}</option>`).join('');
+  sel.value = cmpDefaults[i];
+  sel.addEventListener('change',drawCmp);
+});
+function drawCmp(){
+  const sel = cmpSel.map(s=>P.find(p=>p.id===s.value)||null);
+  let html = `<div class="rl"></div>` + sel.map(p=>`<div class="hd">${p?p.n:'—'}</div>`).join('');
+  CMP_ROWS.forEach(r=>{
+    html += `<div class="rl">${r.l}</div>` + sel.map(p=>`<div>${p?r.f(p):'—'}</div>`).join('');
+  });
+  document.getElementById('cmpGrid').innerHTML = html;
+}
+
+/* ---------- simulador ---------- */
+const SIM = {
+  Cu:{el:'sCu', out:'vCu', f:v=>'USD '+Number(v).toFixed(2)+'/lb'},
+  CuP:{el:'sCuP', out:'vCuP', f:v=>fmt(+v)+' kt/año'},
+  Li:{el:'sLi', out:'vLi', f:v=>'USD '+fmt(+v)+'/t'},
+  LiP:{el:'sLiP', out:'vLiP', f:v=>fmt(+v)+' kt/año'},
+  Brent:{el:'sBrent', out:'vBrent', f:v=>'USD '+v+'/bbl'},
+  Exp:{el:'sExp', out:'vExp', f:v=>Number(v).toFixed(2)+' Mbbl/d'},
+  Gnl:{el:'sGnl', out:'vGnl', f:v=>'USD '+Number(v).toFixed(1)+'/MMBtu'},
+  GnlP:{el:'sGnlP', out:'vGnlP', f:v=>v+' Mtpa'}
+};
+const SIM_BASE = {Cu:4.5, CuP:1500, Li:12000, LiP:300, Brent:65, Exp:0.8, Gnl:10, GnlP:18};
+function drawSim(){
+  Object.values(SIM).forEach(c=>{
+    document.getElementById(c.out).textContent = c.f(document.getElementById(c.el).value);
+  });
+  const g = k => +document.getElementById(SIM[k].el).value;
+  const r = {
+    cobre: g('CuP')*1000 * 2204.62 * g('Cu') / 1e6,
+    litio: g('LiP')*1000 * g('Li') / 1e6,
+    crudo: g('Exp')*1e6 * 365 * g('Brent') / 1e6,
+    gnl:   g('GnlP')*1e6 * 52 * g('Gnl') / 1e6
+  };
+  r.total = r.cobre + r.litio + r.crudo + r.gnl;
+  document.getElementById('simTot').textContent = 'USD ' + fmt(Math.round(r.total)) + ' M';
+  document.getElementById('simVs').textContent =
+    `Equivale a ${(r.total/51000).toFixed(2)}× la proyección del BCRA de exportaciones netas para 2030 (USD 51.000 M). Es valor bruto, sin restar costos ni importaciones.`;
+  const rows = [['Cobre',r.cobre,'#A85A32'],['Litio',r.litio,'#3E8CA0'],['Crudo',r.crudo,'#1F5673'],['GNL',r.gnl,'#2E7D6E']];
+  document.getElementById('simRows').innerHTML = rows.map(([n,v,c])=>
+    `<div class="simrow"><span><span style="color:${c}">■</span> ${n}</span><span class="n">USD ${fmt(Math.round(v))} M</span></div>`).join('');
+  vBars('chSim', rows.map(r=>r[0]), [{n:'Valor bruto', c:'#A85A32',
+    d:rows.map(r=>Math.round(r[1]))}], {h:200, fmt:v=>'USD '+fmt(v)+' M'});
+  // recolorear cada barra por rubro
+  const svg = document.querySelector('#chSim svg');
+  if(svg) svg.querySelectorAll('rect[data-tip]').forEach((rect,i)=>{ if(rows[i]) rect.setAttribute('fill', rows[i][2]); });
+}
+Object.values(SIM).forEach(c=>document.getElementById(c.el).addEventListener('input',drawSim));
+document.getElementById('simReset').addEventListener('click',()=>{
+  Object.entries(SIM_BASE).forEach(([k,v])=>{ document.getElementById(SIM[k].el).value = v; });
+  drawSim();
+});
+
+/* ---------- bloques estáticos ---------- */
+document.getElementById('fiscalBody').innerHTML = FISCAL.map(([a,b,c])=>
+  `<tr><td>${a}</td><td class="mono">${b}</td><td style="font-size:12px;color:var(--ink2)">${c}</td></tr>`).join('');
+document.getElementById('leyesBody').innerHTML = LEYES.map(l=>`
+  <div style="padding:13px 0;border-bottom:1px solid var(--rule2)">
+    <div style="display:flex;gap:10px;align-items:baseline;flex-wrap:wrap">
+      <b style="font-family:Archivo,system-ui,sans-serif;font-size:14px">${l.p}</b>
+      <span class="mono" style="font-size:11px;color:var(--ink3)">${l.l}</span>
+    </div>
+    <div style="font-size:13px;color:var(--ink2);margin-top:4px">${l.t}</div>
+    <div style="font-size:12.5px;margin-top:5px"><span class="tag" style="color:var(--alerta)">${l.x}</span></div>
+  </div>`).join('');
+document.getElementById('milestones').innerHTML = HITOS.map(h=>`
+  <div class="milestone">
+    <span class="when">${h.w}</span>
+    <span><div class="what"><b>${h.q}</b></div><div class="why">${h.y}</div></span>
+  </div>`).join('');
+
+
+/* ---------- modal de gráficos ---------- */
+const CHART_REG = {
+ chCapex:{t:'Inversión por proyecto', n:'USD millones · CAPEX declarado, punto medio del rango. En vista ampliada se muestran hasta 32 proyectos en vez de 18. Responde a los filtros activos.', f:()=>drawCapex(filtered(),'modalChart',true)},
+ chOrigen:{t:'Origen del capital controlante', n:'USD millones asignados por país sede del operador. Cuando un proyecto tiene socios de varias nacionalidades, el CAPEX se reparte en partes iguales entre ellas. Muestra siempre el total, sin filtrar.', f:()=>drawOrigen('modalChart',true)},
+ chRigi:{t:'Cartera RIGI', n:'USD millones aprobados contra en evaluación, desagregado por sector. Muestra siempre el total, sin filtrar.', f:()=>drawRigi('modalChart',true)},
+ chScatter:{t:'Inversión contra empleo en operación', n:'Ambos ejes en escala logarítmica. El tamaño de la burbuja es el empleo en construcción. Solo aparecen los proyectos con ambos datos publicados. Responde a los filtros activos.', f:()=>drawScatter(filtered(),'modalChart',true)},
+ chPetroleo:{t:'Petróleo por operador', n:'Miles de barriles diarios, junio de 2026. Fuente: Monitor Oil & Gas de RICSA ALyC sobre datos de la Secretaría de Energía.', f:()=>drawPetroleo('modalChart',true)},
+ chCobre:{t:'Curva de cobre proyectada', n:'Miles de toneladas anuales, aporte acumulado por proyecto. Es un escenario construido sobre cronogramas declarados por las empresas: asume que ningún proyecto se demora.', f:()=>drawCobre('modalChart',true)},
+ chLitio:{t:'Litio: capacidad instalada y meta', n:'Toneladas anuales de carbonato equivalente. La barra sólida es capacidad hoy, la traslúcida la meta declarada por la operadora.', f:()=>drawLitio('modalChart',true)},
+ chExpo:{t:'Exportaciones proyectadas: tres fuentes, tres números', n:'USD miles de millones. Las series no coinciden porque no miden lo mismo ni asumen los mismos supuestos: el escenario oficial da por cumplidos todos los cronogramas, las consultoras privadas descuentan demoras de FID y precios más conservadores.', f:()=>drawExpo('modalChart',true)}
+};
+let modalOpen = null;
+function openModal(id){
+  const c = CHART_REG[id]; if(!c) return;
+  modalOpen = id;
+  document.getElementById('modalTitle').textContent = c.t;
+  document.getElementById('modalNote').textContent = c.n;
+  document.getElementById('modal').classList.add('open');
+  c.f();
+  document.getElementById('modalClose').focus();
+}
+function closeModal(){
+  modalOpen = null;
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('modalChart').innerHTML = '';
+  tip.classList.remove('on');
+}
+document.querySelectorAll('.expand[data-chart]').forEach(b=>
+  b.addEventListener('click', ()=>openModal(b.dataset.chart)));
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('modal').addEventListener('click', e=>{
+  if(e.target.id === 'modal') closeModal();
+});
+
+/* ---------- cadena de valor ---------- */
+function drawCadena(){
+  const conDatos = P.filter(p=>CADENA[p.id]);
+  document.getElementById('cadGrid').innerHTML = conDatos.map(p=>`
+    <div class="cadcard">
+      <h4>${p.n}</h4>
+      <div class="pj"><span style="color:${SECTORES[p.s].c}">■</span> ${SECTORES[p.s].n} · ${p.prov}</div>
+      ${CADENA[p.id].map(c=>`
+        <div class="cadrow">
+          <span class="rol" style="background:${ROL_COLOR[c.r]||'#5A646C'}">${c.r}</span>
+          <span class="who"><b>${c.n}</b><br><span>${c.d}</span></span>
+        </div>`).join('')}
+    </div>`).join('');
+  const faltan = P.filter(p=>!CADENA[p.id] && (capexMid(p)||0) > 200);
+  document.getElementById('cadFaltan').innerHTML =
+    `${faltan.length} de los ${P.length} proyectos relevados superan los USD 200 millones y no tienen contratistas publicados: ` +
+    faltan.map(p=>`<b>${p.n}</b>`).join(', ') + '.';
+}
+
+/* ---------- render ---------- */
+function render(){
+  const list = filtered();
+  document.getElementById('fCount').textContent = `${list.length} de ${P.length} proyectos`;
+  drawSvgMap('map', list, sectorColor, radiusFor, estadoDe, capexTxt, openDrawer);
+  drawMapList(list);
+  drawCapex(list);
+  drawScatter(list);
+  drawTable(list);
+}
+drawHero(); drawOrigen(); drawRigi(); drawPetroleo(); drawCobre(); drawLitio(); drawExpo();
+drawCmp(); drawSim(); drawCadena(); render();
+
+</script>
+</body>
+</html>
